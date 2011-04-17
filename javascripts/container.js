@@ -1,12 +1,14 @@
 (function() {
 	var AppContainer = Backbone.View.extend({
-		el: $('#appConainter'),
+		el: $('#app-container'),
 		apps: [],
 		currentApp: null,
 		load: function(app) {
 			if(!_.include(this.apps, app)) {
 				this.apps.push(app);
-				!this.currentApp || this.currentApp.el.hide();				
+				this.el.append(app.el.html());
+				!this.currentApp || this.currentApp.el.hide();
+				app.el.show();				
 			} else {
 				if(!app.visible) {
 					currentApp.el.hide();
@@ -20,6 +22,13 @@
 	window.appContainer = new AppContainer;
 
 })();
+
+appContainer.load(merchant);
+
+
+
+
+
 
 
 

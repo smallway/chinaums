@@ -8,13 +8,25 @@
 	</ul>		
 </script>
 
+<!-- mcht -->
+
 <script type="text/template" id="merchant-container-template">
-	<div id="merchant-sidebar" class="sidebar">merchant-sidebar</div>
-	<div id="merchant-action" class="action">merchant-action</div>
-	<div id="merchant-content" class="content">merchant-content</div>
+	<div id="merchant-container">
+		<div class="sidebar"></div>
+		<div class="content"></div>
+	</div>
 </script>
 
 <script type="text/template" id="merchant-sidebar-template">
-	<h1>Merchant Sidebar Template</h1>
+	<div id="merchant-list">
+		list here...
+	</div>
 </script>
+
+<script type="text/template" id="merchant-content-template">
+	<div id="merchant-form">
+		merchant form here...
+	</div>
+</script>
+
 

@@ -7,8 +7,8 @@ $js_files = array('vendor/less',
 				  
 				  'notifier',
 				  'widget',
+				  'app-merchant',
 				  'container',
-				  'app',
 				  'header',
 				  'controller'
 );

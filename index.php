@@ -11,11 +11,11 @@
     <div id="header"></div>
     
     <div id="app-container">
-    	<div id="merchant-container"></div>
-    	<div id="app2"></div>
+    	
     </div>
     
 	<div id="notifications"><div class="wrapper"></div></div>
+	
 	<?php include 'template.tpl';?>
 	<?php include 'javascripts/scripts.php';?>
 
