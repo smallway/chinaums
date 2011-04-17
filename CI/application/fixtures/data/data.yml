@@ -1,0 +1,219 @@
+Model_Acquirer:
+  Acquirer_1:
+    id: 1
+    bank_name: 温州邮储
+    acquirer_account: '21550001001'
+    acquirer_code: '01003330'
+    mcc_prefix: '1009912'
+    account_regex: '^100\\d{8}001\\d{4}$'
+  Acquirer_2:
+    id: 2
+    bank_name: 温州中信
+    acquirer_account: '7335010140907000001 '
+    acquirer_code: '03023330'
+    mcc_prefix: '3029912'
+    account_regex: '^7335\\d{1}101\\d{11}$'
+  Acquirer_3:
+    id: 3
+    bank_name: 温州华夏
+    acquirer_account: '4270030001351200005558 '
+    acquirer_code: '03043330'
+    mcc_prefix: '3049912'
+    account_regex: '^4270\\d{2}0001\\d{4}00\\d{6}$'
+  Acquirer_4:
+    id: 4
+    bank_name: 温州广发
+    acquirer_account: '5315030808'
+    acquirer_code: '03063330'
+    mcc_prefix: '3069912'
+    account_regex: '^53\\d{4}010\\d{5}$'
+  Acquirer_5:
+    id: 5
+    bank_name: 温州深发
+    acquirer_account: '99511000700010'
+    acquirer_code: '03073330'
+    mcc_prefix: '3079912'
+    account_regex: '^110[01][01]\\d{7}0[12]$'
+  Acquirer_6:
+    id: 6
+    bank_name: 温州招行
+    acquirer_account: '40150979'
+    acquirer_code: '03083330'
+    mcc_prefix: '3089912'
+    account_regex: '^57790[23]\\d{4}10\\d{3}$'
+  Acquirer_7:
+    id: 7
+    bank_name: 温州兴业
+    acquirer_account: '351030191613000206'
+    acquirer_code: '03093330'
+    mcc_prefix: '3099912'
+    account_regex: '(^351030163599000159$)|(^355[89]\\d{1}01001000\d{5}$)'
+  Acquirer_8:
+    id: 8
+    bank_name: 温州浦发
+    acquirer_account: '90020142400050022'
+    acquirer_code: '03103330'
+    mcc_prefix: '3109912'
+    account_regex: '^90\\d{2}01\\d{5}00\\d{4}$'
+  Acquirer_9:
+    id: 9
+    bank_name: 温州银行
+    acquirer_account: '262030001'
+    acquirer_code: '04123330'
+    mcc_prefix: '4129912'
+    account_regex: '^\\d{3}00012019000\\d{4}$'
+  Acquirer_10:
+    id: 10
+    bank_name: 鹿城农信
+    acquirer_account: '85100001511106000153'
+    acquirer_code: '1429333010'
+    mcc_prefix: '9293330'
+    account_regex: '(^2010000\\d{8}$)|(^62285803990\\d{8}$)'
+  Acquirer_11:
+    id: 11
+    bank_name: 瓯海农信
+    acquirer_account: '85300001262113000381'
+    acquirer_code: '1429333020'
+    mcc_prefix: '9293330'
+    account_regex: '(^2010000\\d{8}$)|(^62285803990\\d{8}$)'
+  Acquirer_12:
+    id: 12
+    bank_name: 龙湾农信
+    acquirer_account: '85200001511110000115'
+    acquirer_code: '1429333030'
+    mcc_prefix: '9293330'
+    account_regex: '(^2010000\\d{8}$)|(^62285803990\\d{8}$)'
+  Acquirer_13:
+    id: 13
+    bank_name: 平阳农信
+    acquirer_account: '85900001262113000301'
+    acquirer_code: '1429333004'
+    mcc_prefix: '9293330'
+    account_regex: '(^2010000\\d{8}$)|(^62285803990\\d{8}$)'
+  Acquirer_14:
+    id: 14
+    bank_name: 苍南农信
+    acquirer_account: '86100001511106000158'
+    acquirer_code: '1429333008'
+    mcc_prefix: '9293330'
+    account_regex: '(^2010000\\d{8}$)|(^62285803990\\d{8}$)'
+  Acquirer_15:
+    id: 15
+    bank_name: 文成农信
+    acquirer_account: '86200001262102000101'
+    acquirer_code: '1429333003'
+    mcc_prefix: '9293330'
+    account_regex: '(^2010000\\d{8}$)|(^62285803990\\d{8}$)'
+  Acquirer_16:
+    id: 16
+    bank_name: 乐清农信
+    acquirer_account: '85600001511106000103'
+    acquirer_code: '1429333006'
+    mcc_prefix: '9293330'
+    account_regex: '(^2010000\\d{8}$)|(^62285803990\\d{8}$)'
+  Acquirer_17:
+    id: 17
+    bank_name: 泰顺农信
+    acquirer_account: '86300001262102000171'
+    acquirer_code: '1429333005'
+    mcc_prefix: '9293330'
+    account_regex: '(^2010000\\d{8}$)|(^62285803990\\d{8}$)'
+  Acquirer_18:
+    id: 18
+    bank_name: 瑞安农信
+    acquirer_account: '85800001511199000182'
+    acquirer_code: '1429333002'
+    mcc_prefix: '9293330'
+    account_regex: '(^2010000\\d{8}$)|(^62285803990\\d{8}$)'
+  Acquirer_19:
+    id: 19
+    bank_name: 洞头农信
+    acquirer_account: '85500001511106000133 '
+    acquirer_code: '1429333007'
+    mcc_prefix: '9293330'
+    account_regex: '(^2010000\\d{8}$)|(^62285803990\\d{8}$)'
+  Acquirer_20:
+    id: 20
+    bank_name: 永嘉农信
+    acquirer_account: '85700001262113000492 '
+    acquirer_code: '1429333001'
+    mcc_prefix: '9293330'
+    account_regex: '(^2010000\\d{8}$)|(^62285803990\\d{8}$)'
+  Acquirer_21:
+    id: 21
+    bank_name: 温州民生
+    acquirer_account: '2800015360000186 '
+    acquirer_code: '03053330'
+    mcc_prefix: '3059912'
+    account_regex: '^280[15]014[12][17]000\d{4}$'
+  Acquirer_22:
+    id: 22
+    bank_name: '温州稠州 '
+    acquirer_account: '313333020098 '
+    acquirer_code: '05303330'
+    mcc_prefix: '5309912'
+    account_regex: '^17601012010190000\d{3}$'
+  
+    
+Model_Merchant:
+  merchant_1:
+    id: 1
+    code: 929333045110012
+    name: 温州市鹿城区南浦佳迅票务代理服务部
+    address: 温州市华中巷2号
+    legal_person: 金黎敏
+    license_no: 330302609032227
+    tax_no: 3303241982102359923A
+    id_card: 330324198210235992
+    contact: 88667321
+    acquirer_id: 11
+    deposit_bank: 城区支行
+    account: 201000078948153
+    mcc: 4511
+    rate: 0.5%
+    post: 325000
+    is_change_acquirer: false
+    is_guarantee: false
+    is_discount: false
+    is_comfirm_risk: false
+    is_close_creditcard: false
+    send_date: 2011-03-17
+    receive_date: 2011-03-17    
+  merchant_2:
+    id: 2
+    code: 412991251370007
+    name: 温州索芬贸易有限公司
+    address: 温州市瓯海仙岩下林村顺安路43号
+    legal_person: 许海华
+    license_no: 330304000065823
+    tax_no: 330304568180139
+    id_card: 330105198003302515
+    contact: 13958858816/4000998808
+    acquirer_id: 10
+    deposit_bank: 城东支行
+    account: 741000120190007067
+    mcc: 4511
+    rate: 1%，最大20元
+    post: 325000
+    is_change_acquirer: false
+    is_guarantee: false
+    is_discount: false
+    is_comfirm_risk: false
+    is_close_creditcard: false
+    send_date: 2011-03-17
+    receive_date: 2011-03-17 	
+Model_Terminal:
+  terminal_1:
+    id: 1
+    merchant_id: 1
+    terminal_no: '33300001'
+  terminal_2:
+    id: 2
+    merchant_id: 2
+    terminal_no: '40022901'
+  terminal_3:
+    id: 3
+    merchant_id: 2
+    terminal_no: '40022902'  
+
+    

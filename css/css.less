@@ -1,0 +1,134 @@
+/*******************************************************************************
+ * =variables
+ ******************************************************************************/
+@header-height: 90px;
+@action-height: 30px;
+@menu-height: 33px;
+@footer-height: 0;
+@sidebar-width: 210px;
+@detail-panel-width: 274px;
+@merchant-list-width: 786px;
+
+/*=color*/
+@blue1: #e3e9ff;
+@blue2: #bbccff;
+@blue3: #6688ee;
+
+/*******************************************************************************
+ * =global
+*******************************************************************************/
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+
+body {
+	border-top: 2px solid #BAD3EA;
+}
+
+
+/*******************************************************************************
+ * =layout
+ ******************************************************************************/
+html {
+    overflow: hidden;
+}
+
+body {
+    overflow: hidden;
+	-webkit-text-stroke: 1px rgba(255, 255, 255, .01);
+    height: 100%;
+	font-family: 'microsoft yahei', Helvetica, Arial, sans-serif;
+	font-size: 13px;
+	
+}
+
+#header {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: @header-height;
+    overflow: hidden;
+	z-index: 101;
+}
+
+.sidebar {
+    position: absolute;
+    top: @header-height;
+    left: 0;
+    bottom: @footer-height;
+    width: @sidebar-width;
+    overflow: auto;
+}
+
+.action {
+	position: absolute;
+	top: @header-height;
+	left: @sidebar-width;
+	right: 0;
+	height: @action-height;
+	line-height: @action-height;
+	background: #bbccff;
+}
+
+
+.content {
+    position: absolute;
+    top: @header-height + @action-height;
+    left: @sidebar-width;
+    right: 0;
+    bottom: @footer-height;
+    overflow: hidden;
+	min-width: 500px;
+	border-left: 4px solid @blue2;
+}
+
+/*******************************************************************************
+ * =header
+ ******************************************************************************/
+#header {
+	ul#app-switcher {
+		background:url(../images/header-menu-bg.png) 0 -38px repeat-x;
+		line-height: @menu-height;
+		float: left;
+		width: 100%;
+		li {
+			float: left;
+			list-style-type: none;
+			a {
+				padding: 0 10px;
+				color: #36C;
+				display: block;
+				border-top: 2px solid #BAD3EA;
+				line-height: @menu-height - 2;
+				&:hover {
+					background: #e4ebf8;
+				}
+			}
+			&.selected {
+				a {
+					line-height: @menu-height - 3;
+					color: black;
+					font-weight: bolder;
+					border-top: 3px solid #36D;
+				}
+			}
+		}
+	}
+}
+/*******************************************************************************
+ * =notifications
+ ******************************************************************************/
+#notifications {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	background: yellow;
+}
