@@ -88,7 +88,7 @@
 			@unlink($file);
 			return TRUE;
 		}
-		elseif ( ! is_file($file) OR ($fp = @fopen($file, FOPEN_WRITE_CREATE)) === FALSE)
+		elseif (($fp = @fopen($file, FOPEN_WRITE_CREATE)) === FALSE)
 		{
 			return FALSE;
 		}
@@ -208,19 +208,15 @@
 			return $_config[0];
 		}
 
-		// Is the config file in the environment folder?
-		if ( ! defined('ENVIRONMENT') OR ! file_exists($file_path = APPPATH.'config/'.ENVIRONMENT.'/config'.EXT))
-		{
-			$file_path = APPPATH.'config/config'.EXT;
-		}
-
 		// Fetch the config file
-		if ( ! file_exists($file_path))
+		if ( ! file_exists(APPPATH.'config/config'.EXT))
 		{
 			exit('The configuration file does not exist.');
 		}
-
-		require($file_path);
+		else
+		{
+			require(APPPATH.'config/config'.EXT);
+		}
 
 		// Does the $config array exist in the file?
 		if ( ! isset($config) OR ! is_array($config))
@@ -476,26 +472,28 @@
 	 * @param	string
 	 * @return	string
 	 */
-	function remove_invisible_characters($str, $url_encoded = TRUE)
+	function remove_invisible_characters($str)
 	{
-		$non_displayables = array();
-		
-		// every control character except newline (dec 10)
-		// carriage return (dec 13), and horizontal tab (dec 09)
-		
-		if ($url_encoded)
+		static $non_displayables;
+
+		if ( ! isset($non_displayables))
 		{
-			$non_displayables[] = '/%0[0-8bcef]/';	// url encoded 00-08, 11, 12, 14, 15
-			$non_displayables[] = '/%1[0-9a-f]/';	// url encoded 16-31
+			// every control character except newline (dec 10), carriage return (dec 13), and horizontal tab (dec 09),
+			$non_displayables = array(
+										'/%0[0-8bcef]/',			// url encoded 00-08, 11, 12, 14, 15
+										'/%1[0-9a-f]/',				// url encoded 16-31
+										'/[\x00-\x08]/',			// 00-08
+										'/\x0b/', '/\x0c/',			// 11, 12
+										'/[\x0e-\x1f]/'				// 14-31
+									);
 		}
-		
-		$non_displayables[] = '/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]+/S';	// 00-08, 11, 12, 14-31, 127
 
 		do
 		{
-			$str = preg_replace($non_displayables, '', $str, -1, $count);
+			$cleaned = $str;
+			$str = preg_replace($non_displayables, '', $str);
 		}
-		while ($count);
+		while ($cleaned != $str);
 
 		return $str;
 	}

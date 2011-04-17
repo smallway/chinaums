@@ -83,6 +83,5 @@ Doctrine_Manager::connection($db['default']['dsn'], $db['default']['database'])
 // Load the models for the autoloader
 Doctrine::loadModels(realpath(dirname(__FILE__) . '/..') . DIRECTORY_SEPARATOR . 'models');
 
-
 /* End of file database.php */
 /* Location: ./application/config/database.php */

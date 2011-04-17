@@ -59,15 +59,10 @@ class CI_Xmlrpcs extends CI_Xmlrpc
 		log_message('debug', "XML-RPC Server Class Initialized");
 	}
 
-	// --------------------------------------------------------------------
+	//-------------------------------------
+	//  Initialize Prefs and Serve
+	//-------------------------------------
 
-	/**
-	 * Initialize Prefs and Serve
-	 *
-	 * @access	public
-	 * @param	mixed
-	 * @return	void
-	 */
 	function initialize($config=array())
 	{
 		if (isset($config['functions']) && is_array($config['functions']))
@@ -91,15 +86,11 @@ class CI_Xmlrpcs extends CI_Xmlrpc
 		}
 	}
 
-	// --------------------------------------------------------------------
+	//-------------------------------------
+	//  Setting of System Methods
+	//-------------------------------------
 
-	/**
-	 * Setting of System Methods
-	 *
-	 * @access	public
-	 * @return	void
-	 */
-	function set_system_methods()
+	function set_system_methods ()
 	{
 		$this->methods = array(
 					'system.listMethods'	 => array(
@@ -121,14 +112,11 @@ class CI_Xmlrpcs extends CI_Xmlrpc
 					);
 	}
 
-	// --------------------------------------------------------------------
 
-	/**
-	 * Main Server Function
-	 *
-	 * @access	public
-	 * @return	void
-	 */
+	//-------------------------------------
+	//  Main Server Function
+	//-------------------------------------
+
 	function serve()
 	{
 		$r = $this->parseRequest();
@@ -141,19 +129,11 @@ class CI_Xmlrpcs extends CI_Xmlrpc
 		exit($payload);
 	}
 
-	// --------------------------------------------------------------------
+	//-------------------------------------
+	//  Add Method to Class
+	//-------------------------------------
 
-	/**
-	 * Add Method to Class
-	 *
-	 * @access	public
-	 * @param	string	method name
-	 * @param	string	function
-	 * @param	string	signature
-	 * @param	string	docstring
-	 * @return	void
-	 */
-	function add_to_map($methodname, $function, $sig, $doc)
+	function add_to_map($methodname,$function,$sig,$doc)
 	{
 		$this->methods[$methodname] = array(
 			'function'  => $function,
@@ -162,15 +142,11 @@ class CI_Xmlrpcs extends CI_Xmlrpc
 		);
 	}
 
-	// --------------------------------------------------------------------
 
-	/**
-	 * Parse Server Request
-	 *
-	 * @access	public
-	 * @param	string	data
-	 * @return	object	xmlrpc response
-	 */
+	//-------------------------------------
+	//  Parse Server Request
+	//-------------------------------------
+
 	function parseRequest($data='')
 	{
 		global $HTTP_RAW_POST_DATA;
@@ -220,7 +196,7 @@ class CI_Xmlrpcs extends CI_Xmlrpc
 				xml_get_current_line_number($parser)));
 			xml_parser_free($parser);
 		}
-		elseif ($parser_object->xh[$parser]['isf'])
+		elseif($parser_object->xh[$parser]['isf'])
 		{
 			return new XML_RPC_Response(0, $this->xmlrpcerr['invalid_return'], $this->xmlrpcstr['invalid_return']);
 		}
@@ -231,7 +207,7 @@ class CI_Xmlrpcs extends CI_Xmlrpc
 			$m = new XML_RPC_Message($parser_object->xh[$parser]['method']);
 			$plist='';
 
-			for ($i=0; $i < count($parser_object->xh[$parser]['params']); $i++)
+			for($i=0; $i < count($parser_object->xh[$parser]['params']); $i++)
 			{
 				if ($this->debug === TRUE)
 				{
@@ -263,15 +239,10 @@ class CI_Xmlrpcs extends CI_Xmlrpc
 		return $r;
 	}
 
-	// --------------------------------------------------------------------
+	//-------------------------------------
+	//  Executes the Method
+	//-------------------------------------
 
-	/**
-	 * Executes the Method
-	 *
-	 * @access	protected
-	 * @param	object
-	 * @return	mixed
-	 */
 	function _execute($m)
 	{
 		$methName = $m->method_name;
@@ -326,13 +297,13 @@ class CI_Xmlrpcs extends CI_Xmlrpc
 		if (isset($this->methods[$methName]['signature']))
 		{
 			$sig = $this->methods[$methName]['signature'];
-			for ($i=0; $i<count($sig); $i++)
+			for($i=0; $i<count($sig); $i++)
 			{
 				$current_sig = $sig[$i];
 
 				if (count($current_sig) == count($m->params)+1)
 				{
-					for ($n=0; $n < count($m->params); $n++)
+					for($n=0; $n < count($m->params); $n++)
 					{
 						$p = $m->params[$n];
 						$pt = ($p->kindOf() == 'scalar') ? $p->scalarval() : $p->kindOf();
@@ -381,27 +352,23 @@ class CI_Xmlrpcs extends CI_Xmlrpc
 			return call_user_func($this->methods[$methName]['function'], $m);
 		}
 	}
-	
-	// --------------------------------------------------------------------
 
-	/**
-	 * Server Function:  List Methods
-	 *
-	 * @access	public
-	 * @param	mixed
-	 * @return	object
-	 */
+
+	//-------------------------------------
+	//  Server Function:  List Methods
+	//-------------------------------------
+
 	function listMethods($m)
 	{
 		$v = new XML_RPC_Values();
 		$output = array();
 
-		foreach ($this->methods as $key => $value)
+		foreach($this->methods as $key => $value)
 		{
 			$output[] = new XML_RPC_Values($key, 'string');
 		}
 
-		foreach ($this->system_methods as $key => $value)
+		foreach($this->system_methods as $key => $value)
 		{
 			$output[]= new XML_RPC_Values($key, 'string');
 		}
@@ -409,16 +376,11 @@ class CI_Xmlrpcs extends CI_Xmlrpc
 		$v->addArray($output);
 		return new XML_RPC_Response($v);
 	}
-	
-	// --------------------------------------------------------------------
 
-	/**
-	 * Server Function:  Return Signature for Method
-	 *
-	 * @access	public
-	 * @param	mixed
-	 * @return	object
-	 */
+	//-------------------------------------
+	//  Server Function:  Return Signature for Method
+	//-------------------------------------
+
 	function methodSignature($m)
 	{
 		$parameters = $m->output_parameters();
@@ -431,11 +393,11 @@ class CI_Xmlrpcs extends CI_Xmlrpc
 				$sigs = array();
 				$signature = $this->methods[$method_name]['signature'];
 
-				for ($i=0; $i < count($signature); $i++)
+				for($i=0; $i < count($signature); $i++)
 				{
 					$cursig = array();
 					$inSig = $signature[$i];
-					for ($j=0; $j<count($inSig); $j++)
+					for($j=0; $j<count($inSig); $j++)
 					{
 						$cursig[]= new XML_RPC_Values($inSig[$j], 'string');
 					}
@@ -455,15 +417,10 @@ class CI_Xmlrpcs extends CI_Xmlrpc
 		return $r;
 	}
 
-	// --------------------------------------------------------------------
+	//-------------------------------------
+	//  Server Function:  Doc String for Method
+	//-------------------------------------
 
-	/**
-	 * Server Function:  Doc String for Method
-	 *
-	 * @access	public
-	 * @param	mixed
-	 * @return	object
-	 */
 	function methodHelp($m)
 	{
 		$parameters = $m->output_parameters();
@@ -480,16 +437,11 @@ class CI_Xmlrpcs extends CI_Xmlrpc
 			return new XML_RPC_Response(0, $this->xmlrpcerr['introspect_unknown'], $this->xmlrpcstr['introspect_unknown']);
 		}
 	}
-	
-	// --------------------------------------------------------------------
 
-	/**
-	 * Server Function:  Multi-call
-	 *
-	 * @access	public
-	 * @param	mixed
-	 * @return	object
-	 */
+	//-------------------------------------
+	//  Server Function:  Multi-call
+	//-------------------------------------
+
 	function multicall($m)
 	{
 		// Disabled
@@ -507,7 +459,7 @@ class CI_Xmlrpcs extends CI_Xmlrpc
 			$m = new XML_RPC_Message($value[0]);
 			$plist='';
 
-			for ($i=0; $i < count($value[1]); $i++)
+			for($i=0; $i < count($value[1]); $i++)
 			{
 				$m->addParam(new XML_RPC_Values($value[1][$i], 'string'));
 			}
@@ -525,15 +477,11 @@ class CI_Xmlrpcs extends CI_Xmlrpc
 		return new XML_RPC_Response(new XML_RPC_Values($result, 'array'));
 	}
 
-	// --------------------------------------------------------------------
 
-	/**
-	 *  Multi-call Function:  Error Handling
-	 *
-	 * @access	public
-	 * @param	mixed
-	 * @return	object
-	 */
+	//-------------------------------------
+	//  Multi-call Function:  Error Handling
+	//-------------------------------------
+
 	function multicall_error($err)
 	{
 		$str  = is_string($err) ? $this->xmlrpcstr["multicall_${err}"] : $err->faultString();
@@ -545,45 +493,29 @@ class CI_Xmlrpcs extends CI_Xmlrpc
 		return new XML_RPC_Values($struct, 'struct');
 	}
 
-	// --------------------------------------------------------------------
 
-	/**
-	 *  Multi-call Function:  Processes method
-	 *
-	 * @access	public
-	 * @param	mixed
-	 * @return	object
-	 */
+	//-------------------------------------
+	//  Multi-call Function:  Processes method
+	//-------------------------------------
+
 	function do_multicall($call)
 	{
 		if ($call->kindOf() != 'struct')
-		{
 			return $this->multicall_error('notstruct');
-		}
 		elseif ( ! $methName = $call->me['struct']['methodName'])
-		{
 			return $this->multicall_error('nomethod');
-		}
 
 		list($scalar_type,$scalar_value)=each($methName->me);
 		$scalar_type = $scalar_type == $this->xmlrpcI4 ? $this->xmlrpcInt : $scalar_type;
 
 		if ($methName->kindOf() != 'scalar' OR $scalar_type != 'string')
-		{
 			return $this->multicall_error('notstring');
-		}
 		elseif ($scalar_value == 'system.multicall')
-		{
 			return $this->multicall_error('recursion');
-		}
 		elseif ( ! $params = $call->me['struct']['params'])
-		{
 			return $this->multicall_error('noparams');
-		}
 		elseif ($params->kindOf() != 'array')
-		{
 			return $this->multicall_error('notarray');
-		}
 
 		list($a,$b)=each($params->me);
 		$numParams = count($b);

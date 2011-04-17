@@ -142,8 +142,7 @@ class CI_Upload {
 	 */
 	public function do_upload($field = 'userfile')
 	{
-
-	// Is $_FILES[$field] set? If not, no reason to continue.
+		// Is $_FILES[$field] set? If not, no reason to continue.
 		if ( ! isset($_FILES[$field]))
 		{
 			$this->set_error('upload_no_file_selected');
@@ -215,7 +214,7 @@ class CI_Upload {
 			$this->file_name = $this->_prep_filename($this->_file_name_override);
 
 			// If no extension was provided in the file_name config item, use the uploaded one
-			if (strpos($this->_file_name_override, '.') === FALSE)
+			if(strpos($this->_file_name_override, '.') === FALSE)
 			{
 				$this->file_name .= $this->file_ext;
 			}
@@ -875,6 +874,12 @@ class CI_Upload {
 		}
 
 		$CI =& get_instance();
+
+		if ( ! isset($CI->security))
+		{
+			$CI->load->library('security');
+		}
+
 		return $CI->security->xss_clean($data, TRUE);
 	}
 
@@ -945,21 +950,11 @@ class CI_Upload {
 
 		if (count($this->mimes) == 0)
 		{
-			if (defined('ENVIRONMENT') AND is_file(APPPATH.'config/'.ENVIRONMENT.'/mimes'.EXT))
+			if (@require_once(APPPATH.'config/mimes'.EXT))
 			{
-				include(APPPATH.'config/'.ENVIRONMENT.'/mimes'.EXT);
+				$this->mimes = $mimes;
+				unset($mimes);
 			}
-			elseif (is_file(APPPATH.'config/mimes'.EXT))
-			{
-				include(APPPATH.'config//mimes'.EXT);
-			}
-			else
-			{
-				return FALSE;
-			}
-
-			$this->mimes = $mimes;
-			unset($mimes);
 		}
 
 		return ( ! isset($this->mimes[$mime])) ? FALSE : $this->mimes[$mime];

@@ -19,7 +19,11 @@
 
 <script type="text/template" id="merchant-sidebar-template">
 	<div id="merchant-list">
-		list here...
+		<ul>
+		<% _.each(res, function(m) {%>
+			<li><%= name %></li>
+		<% }); %>
+		</ul>
 	</div>
 </script>
 

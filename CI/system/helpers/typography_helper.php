@@ -84,8 +84,9 @@ if ( ! function_exists('entity_decode'))
 {
 	function entity_decode($str, $charset='UTF-8')
 	{
-		global $SEC;
-		return $SEC->entity_decode($str, $charset);
+		$CI =& get_instance();
+		$CI->load->library('security');
+		return $CI->security->entity_decode($str, $charset);
 	}
 }
 

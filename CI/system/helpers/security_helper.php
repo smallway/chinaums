@@ -67,6 +67,22 @@ if ( ! function_exists('sanitize_filename'))
 /**
  * Hash encode a string
  *
+ * This is simply an alias for do_hash()
+ * dohash() is now deprecated
+ */
+if ( ! function_exists('dohash'))
+{
+	function dohash($str, $type = 'sha1')
+	{
+		return do_hash($str, $type);
+	}
+}
+
+// --------------------------------------------------------------------
+
+/**
+ * Hash encode a string
+ *
  * @access	public
  * @param	string
  * @return	string
@@ -77,7 +93,23 @@ if ( ! function_exists('do_hash'))
 	{
 		if ($type == 'sha1')
 		{
-			return sha1($str);
+			if ( ! function_exists('sha1'))
+			{
+				if ( ! function_exists('mhash'))
+				{
+					require_once(BASEPATH.'libraries/Sha1'.EXT);
+					$SH = new CI_SHA;
+					return $SH->generate($str);
+				}
+				else
+				{
+					return bin2hex(mhash(MHASH_SHA1, $str));
+				}
+			}
+			else
+			{
+				return sha1($str);
+			}
 		}
 		else
 		{

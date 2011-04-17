@@ -59,7 +59,7 @@ if ( ! function_exists('smiley_js'))
 
 				if (is_array($alias))
 				{
-					foreach ($alias as $name => $id)
+					foreach($alias as $name => $id)
 					{
 						$m[] = '"'.$name.'" : "'.$id.'"';
 					}
@@ -101,7 +101,7 @@ EOF;
 		{
 			if (is_array($alias))
 			{
-				foreach ($alias as $name => $id)
+				foreach($alias as $name => $id)
 				{
 					$r .= 'smiley_map["'.$name.'"] = "'.$id.'";'."\n";
 				}
@@ -229,21 +229,19 @@ if ( ! function_exists('_get_smiley_array'))
 {
 	function _get_smiley_array()
 	{
-		if (defined('ENVIRONMENT') AND file_exists(APPPATH.'config/'.ENVIRONMENT.'/smileys'.EXT))
+		if ( ! file_exists(APPPATH.'config/smileys'.EXT))
 		{
-		    include(APPPATH.'config/'.ENVIRONMENT.'/smileys'.EXT);
-		}
-		elseif (file_exists(APPPATH.'config/smileys'.EXT))
-		{
-			include(APPPATH.'config/smileys'.EXT);
-		}
-		
-		if (isset($smileys) AND is_array($smileys))
-		{
-			return $smileys;
+			return FALSE;
 		}
 
-		return FALSE;
+		include(APPPATH.'config/smileys'.EXT);
+
+		if ( ! isset($smileys) OR ! is_array($smileys))
+		{
+			return FALSE;
+		}
+
+		return $smileys;
 	}
 }
 
