@@ -20,8 +20,8 @@
 <script type="text/template" id="merchant-sidebar-template">
 	<div id="merchant-list">
 		<ul>
-		<% _.each(res, function(m) {%>
-			<li><%= name %></li>
+		<% _.each(list, function(m) {%>
+			<li><a href="#"><%= m.name %></a></li>
 		<% }); %>
 		</ul>
 	</div>

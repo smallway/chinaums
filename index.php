@@ -11,7 +11,10 @@
     <div id="header"></div>
     
     <div id="app-container">
-    	
+    	<div id="merchant-container" class="">
+    		<div class="sidebar"></div>
+    		<div class="content"></div>
+    	</div>
     </div>
     
 	<div id="notifications"><div class="wrapper"></div></div>

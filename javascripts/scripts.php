@@ -6,7 +6,6 @@ $js_files = array('vendor/less',
 				  'vendor/backbone',
 				  
 				  'notifier',
-				  'widget',
 				  'app-merchant',
 				  'container',
 				  'header',
