@@ -5,7 +5,7 @@ class Api extends REST_Controller {
 	
 	function merchants_get() {
 		$q = new Doctrine_Query();
-		$q->select('m.name')->from('model_merchant m');
+		$q->select('*')->from('model_merchant m');
 		$m = $q->execute();
 		$this->response($m->toArray(true));
 	}

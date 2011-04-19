@@ -177,8 +177,12 @@ Model_Merchant:
     is_discount: false
     is_comfirm_risk: false
     is_close_creditcard: false
+    create_date: '2011-03-20'
     send_date: '2011-03-17'
     receive_date: '2011-03-17'    
+    export_to_oss: false
+    export_to_unionpay: false
+    upload_scan_file: false
   merchant_2:
     id: 2
     code: 412991251370007
@@ -200,8 +204,12 @@ Model_Merchant:
     is_discount: false
     is_comfirm_risk: false
     is_close_creditcard: false
+    create_date: '2011-03-20'
     send_date: '2011-03-17'
     receive_date: '2011-03-17' 	
+    export_to_oss: false
+    export_to_unionpay: false
+    upload_scan_file: false    
 Model_Terminal:
   terminal_1:
     id: 1

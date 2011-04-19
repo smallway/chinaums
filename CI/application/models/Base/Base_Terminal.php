@@ -24,29 +24,16 @@ abstract class Model_Base_Terminal extends Doctrine_Record
         $this->setTableName('terminal');
         $this->hasColumn('id', 'integer', 8, array(
              'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
+             'primary' => true,
              'autoincrement' => false,
              'length' => '8',
              ));
         $this->hasColumn('merchant_id', 'integer', 8, array(
              'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
-             'autoincrement' => false,
              'length' => '8',
              ));
         $this->hasColumn('terminal_no', 'string', 8, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
-             'autoincrement' => false,
              'length' => '8',
              ));
     }

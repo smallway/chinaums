@@ -27,55 +27,28 @@ abstract class Model_Base_Acquirer extends Doctrine_Record
         $this->setTableName('acquirer');
         $this->hasColumn('id', 'integer', 8, array(
              'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
              'primary' => true,
              'autoincrement' => true,
              'length' => '8',
              ));
         $this->hasColumn('bank_name', 'string', 255, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => true,
-             'autoincrement' => false,
              'length' => '255',
              ));
         $this->hasColumn('acquirer_account', 'string', 255, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => true,
-             'autoincrement' => false,
              'length' => '255',
              ));
         $this->hasColumn('acquirer_code', 'string', 64, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => true,
-             'autoincrement' => false,
              'length' => '64',
              ));
         $this->hasColumn('mcc_prefix', 'string', 7, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => true,
-             'autoincrement' => false,
              'length' => '7',
              ));
         $this->hasColumn('account_regex', 'string', 64, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => true,
-             'autoincrement' => false,
              'length' => '64',
              ));
     }

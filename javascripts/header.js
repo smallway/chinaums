@@ -8,6 +8,8 @@ var HeaderView = Backbone.View.extend({
 	setSelect: function(appname) {
 		this.$('li').removeClass('selected');
 		this.$('a[href=#' + appname + ']').parent().addClass('selected');
+		$('.container-view').hide();
+		$('div[rel=' + appname +  ']').show();
 	}
 });
 headerView = new HeaderView;

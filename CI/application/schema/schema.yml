@@ -4,45 +4,18 @@ Acquirer:
   columns:
     id:
       type: integer(8)
-      fixed: false
-      unsigned: false
       primary: true
       autoincrement: true
     bank_name:
       type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
     acquirer_account:
       type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
     acquirer_code:
       type: string(64)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
     mcc_prefix:
       type: string(7)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
     account_regex:
       type: string(64)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
   relations:
     Merchant:
       local: id
@@ -54,157 +27,59 @@ Merchant:
   columns:
     id:
       type: integer(8)
-      fixed: false
-      unsigned: false
       primary: true
       autoincrement: true
     code:
       type: string(15)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
       autoincrement: false
     name:
       type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
     address:
       type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
     legal_person:
       type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
     license_no:
       type: string(15)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
     tax_no:
       type: string(20)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
     id_card:
       type: string(18)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
     contact:
       type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
     acquirer_id:
       type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
     deposit_bank:
       type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
     account:
       type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
     mcc:
       type: string(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
     rate:
       type: string(20)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
     post:
       type: string(6)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
     is_change_acquirer:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
+      type: boolean
     is_guarantee:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
+      type: boolean
     is_discount:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
+      type: boolean
     is_comfirm_risk:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
+      type: boolean
     is_close_creditcard:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
+      type: boolean
+    create_date:
+      type: date(25)
     send_date:
       type: date(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
     receive_date:
       type: date(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
+    export_to_oss: 
+      type: boolean
+    export_to_unionpay:
+      type: boolean
+    upload_scan_file: 
+      type: boolean
   relations:
     Acquirer:
       local: acquirer_id
@@ -220,25 +95,12 @@ Terminal:
   columns:
     id:
       type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
+      primary: true
       autoincrement: false
     merchant_id:
       type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
     terminal_no:
       type: string(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
   relations:
     Merchant:
       local: merchant_id

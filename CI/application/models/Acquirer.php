@@ -10,7 +10,7 @@
  * @author      <>
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
- require_once('Base/Base_Acquirer.php');
-class Model_Acquirer extends Model_Base_Acquirer {
+class Model_Acquirer extends Model_Base_Acquirer
+{
 
 }

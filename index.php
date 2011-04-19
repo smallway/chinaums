@@ -11,9 +11,15 @@
     <div id="header"></div>
     
     <div id="app-container">
-    	<div id="merchant-container" class="">
+    	<div id="merchant-container" rel="merchant" class="container-view" style="display: none">
     		<div class="sidebar"></div>
-    		<div class="content"></div>
+    		<div class="action">Action</div>
+    		<div class="content">Content</div>
+    	</div>
+    	<div id="another-container" rel="another" class="container-view" style="display: none">
+    		<div class="sidebar">Another Sidbar</div>
+    		<div class="action">Another Action</div>
+    		<div class="content">Another Content</div>
     	</div>
     </div>
     

@@ -22,13 +22,17 @@ Doctrine_Manager::getInstance()->bindComponent('Model_Merchant', 'chinaums');
  * @property string $mcc
  * @property string $rate
  * @property string $post
- * @property integer $is_change_acquirer
- * @property integer $is_guarantee
- * @property integer $is_discount
- * @property integer $is_comfirm_risk
- * @property integer $is_close_creditcard
+ * @property boolean $is_change_acquirer
+ * @property boolean $is_guarantee
+ * @property boolean $is_discount
+ * @property boolean $is_comfirm_risk
+ * @property boolean $is_close_creditcard
+ * @property date $create_date
  * @property date $send_date
  * @property date $receive_date
+ * @property boolean $export_to_oss
+ * @property boolean $export_to_unionpay
+ * @property boolean $upload_scan_file
  * @property Model_Acquirer $Acquirer
  * @property Doctrine_Collection $Terminal
  * 
@@ -44,200 +48,102 @@ abstract class Model_Base_Merchant extends Doctrine_Record
         $this->setTableName('merchant');
         $this->hasColumn('id', 'integer', 8, array(
              'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
              'primary' => true,
              'autoincrement' => true,
              'length' => '8',
              ));
         $this->hasColumn('code', 'string', 15, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
              'autoincrement' => false,
              'length' => '15',
              ));
         $this->hasColumn('name', 'string', 255, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
-             'autoincrement' => false,
              'length' => '255',
              ));
         $this->hasColumn('address', 'string', 255, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
-             'autoincrement' => false,
              'length' => '255',
              ));
         $this->hasColumn('legal_person', 'string', 255, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
-             'autoincrement' => false,
              'length' => '255',
              ));
         $this->hasColumn('license_no', 'string', 15, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
-             'autoincrement' => false,
              'length' => '15',
              ));
         $this->hasColumn('tax_no', 'string', 20, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
-             'autoincrement' => false,
              'length' => '20',
              ));
         $this->hasColumn('id_card', 'string', 18, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
-             'autoincrement' => false,
              'length' => '18',
              ));
         $this->hasColumn('contact', 'string', 255, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
-             'autoincrement' => false,
              'length' => '255',
              ));
         $this->hasColumn('acquirer_id', 'integer', 8, array(
              'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
-             'autoincrement' => false,
              'length' => '8',
              ));
         $this->hasColumn('deposit_bank', 'string', 255, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
-             'autoincrement' => false,
              'length' => '255',
              ));
         $this->hasColumn('account', 'string', 255, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
-             'autoincrement' => false,
              'length' => '255',
              ));
         $this->hasColumn('mcc', 'string', 4, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
-             'autoincrement' => false,
              'length' => '4',
              ));
         $this->hasColumn('rate', 'string', 20, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
-             'autoincrement' => false,
              'length' => '20',
              ));
         $this->hasColumn('post', 'string', 6, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
-             'autoincrement' => false,
              'length' => '6',
              ));
-        $this->hasColumn('is_change_acquirer', 'integer', 1, array(
-             'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
-             'autoincrement' => false,
-             'length' => '1',
+        $this->hasColumn('is_change_acquirer', 'boolean', null, array(
+             'type' => 'boolean',
              ));
-        $this->hasColumn('is_guarantee', 'integer', 1, array(
-             'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
-             'autoincrement' => false,
-             'length' => '1',
+        $this->hasColumn('is_guarantee', 'boolean', null, array(
+             'type' => 'boolean',
              ));
-        $this->hasColumn('is_discount', 'integer', 1, array(
-             'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
-             'autoincrement' => false,
-             'length' => '1',
+        $this->hasColumn('is_discount', 'boolean', null, array(
+             'type' => 'boolean',
              ));
-        $this->hasColumn('is_comfirm_risk', 'integer', 1, array(
-             'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
-             'autoincrement' => false,
-             'length' => '1',
+        $this->hasColumn('is_comfirm_risk', 'boolean', null, array(
+             'type' => 'boolean',
              ));
-        $this->hasColumn('is_close_creditcard', 'integer', 1, array(
-             'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
-             'autoincrement' => false,
-             'length' => '1',
+        $this->hasColumn('is_close_creditcard', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('create_date', 'date', 25, array(
+             'type' => 'date',
+             'length' => '25',
              ));
         $this->hasColumn('send_date', 'date', 25, array(
              'type' => 'date',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
-             'autoincrement' => false,
              'length' => '25',
              ));
         $this->hasColumn('receive_date', 'date', 25, array(
              'type' => 'date',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
-             'autoincrement' => false,
              'length' => '25',
+             ));
+        $this->hasColumn('export_to_oss', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('export_to_unionpay', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('upload_scan_file', 'boolean', null, array(
+             'type' => 'boolean',
              ));
     }
 
