@@ -33,7 +33,10 @@
 </script>
 
 <script type="text/template" id="merchant-template">
+  <td><%= code %></td>
   <td><%= name %></td>
+  <td><%= address %></td>
+  <td><%= rate %></td>
 </script>
 
 

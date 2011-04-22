@@ -209,7 +209,88 @@ Model_Merchant:
     receive_date: '2011-03-17' 	
     export_to_oss: false
     export_to_unionpay: false
-    upload_scan_file: false    
+    upload_scan_file: false  
+  merchant_3:
+    id: 3
+    code: 929333056910142
+    name: 温州市鹿城区大南李建增男装店
+    address: 温州市大南门南方大厦101室
+    legal_person: 朱洁茹
+    license_no: 330302620025359
+    tax_no: '3303021983043036443C'
+    id_card: 330302198304303644
+    contact: 13958858816/4000998808
+    acquirer_id: 11
+    deposit_bank: 城东支行
+    account: 201000074688679
+    mcc: 5691
+    rate: 1%
+    post: 325000
+    is_change_acquirer: false
+    is_guarantee: false
+    is_discount: false
+    is_comfirm_risk: false
+    is_close_creditcard: false
+    create_date: '2011-03-20'
+    send_date: '2011-03-17'
+    receive_date: '2011-03-17' 	
+    export_to_oss: false
+    export_to_unionpay: false
+    upload_scan_file: false   
+  merchant_4:
+    id: 4
+    code: 929333058120073
+    name: 温州市瓯海娄桥闻鲜角农家乐
+    address: 温州市瓯海娄桥街道玕南村娄东大街11幢13号旁边
+    legal_person: 朱洁茹
+    license_no: 330302620025359
+    tax_no: '3303021983043036443C'
+    id_card: 330302198304303644
+    contact: 13958858816/4000998808
+    acquirer_id: 11
+    deposit_bank: 城东支行
+    account: 201000074688679
+    mcc: 5812
+    rate: 2%
+    post: 325000
+    is_change_acquirer: false
+    is_guarantee: false
+    is_discount: false
+    is_comfirm_risk: false
+    is_close_creditcard: false
+    create_date: '2011-03-20'
+    send_date: '2011-03-17'
+    receive_date: '2011-03-17' 	
+    export_to_oss: false
+    export_to_unionpay: false
+    upload_scan_file: false 
+  merchant_5:
+    id: 5
+    code: 929333059986307
+    name: 温州家具市场迪美特家具店
+    address: 温州家具市场2区205号
+    legal_person: 朱洁茹
+    license_no: 330302620025359
+    tax_no: '3303021983043036443C'
+    id_card: 330302198304303644
+    contact: 13958858816/4000998808
+    acquirer_id: 11
+    deposit_bank: 城东支行
+    account: 201000074688679
+    mcc: 5812
+    rate: 2%
+    post: 325000
+    is_change_acquirer: false
+    is_guarantee: false
+    is_discount: false
+    is_comfirm_risk: false
+    is_close_creditcard: false
+    create_date: '2011-03-20'
+    send_date: '2011-03-17'
+    receive_date: '2011-03-17' 	
+    export_to_oss: false
+    export_to_unionpay: false
+    upload_scan_file: false             
 Model_Terminal:
   terminal_1:
     id: 1

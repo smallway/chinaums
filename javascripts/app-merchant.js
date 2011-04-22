@@ -15,7 +15,17 @@
 	
 	var MerchantList = Backbone.Collection.extend({
 		model: Merchant,
-		url: '/ci/api/merchants/format/json',
+		limit: 5,
+		currentPage: 1,
+		initialize: function() {
+			
+		},
+		url: function() {
+			return '/ci/api/merchants/page/' + this.currentPage + '/limit/'+ this.limit + '/format/json';
+		},
+		gotoPage: function(page) {
+			this.currentPage = page;
+		}
 	});
 	
 	var merchants = new MerchantList;
