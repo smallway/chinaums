@@ -20,7 +20,7 @@ Acquirer:
     Merchant:
       local: id
       foreign: acquirer_id
-      type: many
+      type: many  
 Merchant:
   connection: chinaums
   tableName: merchant
@@ -89,6 +89,7 @@ Merchant:
       local: id
       foreign: merchant_id
       type: many
+   
 Terminal:
   connection: chinaums
   tableName: terminal

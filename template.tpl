@@ -32,10 +32,8 @@
 	</ul>
 </script>
 
-<script type="text/template" id="merchant-content-template">
-	<div id="merchant-form">
-		merchant form here...
-	</div>
+<script type="text/template" id="merchant-template">
+  <td><%= name %></td>
 </script>
 
 

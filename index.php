@@ -14,7 +14,7 @@
     	<div id="merchant-container" rel="merchant" class="container-view" style="display: none">
     		<div class="sidebar"></div>
     		<div class="action">Action</div>
-    		<div class="content">Content</div>
+    		<div class="content"><table></table></div>
     	</div>
     	<div id="another-container" rel="another" class="container-view" style="display: none">
     		<div class="sidebar">Another Sidbar</div>
