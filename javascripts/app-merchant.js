@@ -19,13 +19,22 @@
 		currentPage: 1,
 		initialize: function() {
 			
+			this.bind('gotoPage', this.fetch);
+			this.bind('byAcquirer', this.fetch);
+			this.bind('byStatus', this.fetch);
 		},
 		url: function() {
 			return '/ci/api/merchants/page/' + this.currentPage + '/limit/'+ this.limit + '/format/json';
 		},
 		gotoPage: function(page) {
 			this.currentPage = page;
-		}
+		},
+		byAcquirer: function(acquirer) {
+			
+		},
+		byStatus: function(status) {
+			
+		},
 	});
 	
 	var merchants = new MerchantList;
@@ -51,6 +60,7 @@
 		},
 		
 		addOne: function(merchant) {
+			console.log(merchant);
 			var view = new MerchantView({model: merchant});
 			this.el.append(view.render().el);
 		},

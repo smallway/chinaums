@@ -37,6 +37,7 @@
   <td><%= name %></td>
   <td><%= address %></td>
   <td><%= rate %></td>
+  <td><%= Acquirer.bank_name %></td>
 </script>
 
 
