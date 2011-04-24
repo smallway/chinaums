@@ -40,4 +40,13 @@
   <td><%= Acquirer.bank_name %></td>
 </script>
 
+<script type="text/template" id="pagination-template">
+	<div id="pagination">
+		<span><a href="#">« previous</a></span>
+		<span><input type="text" id="page-input" /> / <%= totalPage %></span>
+		<span><a href="#">next »</a></span>
+		<span>total:<%= totalCount %></span>
+	</div>
+</script>
+
 
