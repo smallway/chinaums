@@ -80,6 +80,10 @@ Merchant:
       type: boolean
     upload_scan_file: 
       type: boolean
+    export_to_excel:
+      type: boolean
+    new_one:
+      type: boolean
   relations:
     Acquirer:
       local: acquirer_id

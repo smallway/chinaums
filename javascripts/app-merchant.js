@@ -5,8 +5,14 @@
 	var HomeSidebar = Backbone.View.extend({
 		el: $('#merchant-container .sidebar'),
 		template: _.template($('#merchant-home-sidebar-template').html()),
+		events: {
+			'click #merchant-container .sidebar li a': 'getStatus'
+		},
 		initialize: function() {
 			this.el.html(this.template({}));
+		},
+		getStatus: function(e){
+			merchants.byStatus($(e.currentTarget).attr('id'));
 		}
 	});
 	new HomeSidebar;
@@ -22,29 +28,35 @@
 	 ***********************************************************************/	
 	var MerchantList = Backbone.Collection.extend({
 		model: Merchant,
-		limit: 2,
-		currentPage: 1,
 		initialize: function() {
+			this.limit = 3;
 			this.bind('refresh', this.getTotalCount);
 		},
 
 		url: function() {
-			return '/ci/api/merchants/page/' + this.currentPage + '/limit/'+ this.limit + '/format/json';
+			return '/ci/api/merchants' + 
+				   '/page/' + this.currentPage + 
+				   '/limit/'+ this.limit + 
+				   '/status/' + this.status +
+				   '/acquirer/' + this.acquirer +
+				   '/format/json';
 		},
 		gotoPage: function(page) {
 			this.currentPage = page;
+			this.fetch();
 		},
 		byAcquirer: function(acquirer) {
 			
 		},
 		byStatus: function(status) {
-			
+			this.status = status;
+			this.fetch();
 		},
 		
 		getTotalCount: function() {
 			var that = this;
-			$.getJSON('/ci/api/merchantsCount/format/json', function(res) {
-				that.totalCount = res.totalCount;
+			$.getJSON('/ci/api/merchants/action/get_count' + '/status/' + this.status + '/acquirer/' + this.acquirer + '/format/json', function(res) {
+				that.totalCount = res[0].count
 				that.totalPage = Math.ceil(that.totalCount / that.limit);
 				that.trigger('getTotalCount');
 			});
@@ -121,10 +133,8 @@
 		},
 		gotoPageOnEnter: function(e) {
 			if(e.keyCode != 13) return;
-			merchants.currentPage = this.input.val();
-			merchants.fetch();
-			
-		}
+			merchants.gotoPage(this.input.val());
+		},
 	});
 	new PaginationView;
 	

@@ -23,12 +23,12 @@
 <script type="text/template" id="merchant-home-sidebar-template">
 	<div id="sidebar-header"><a href="/merchants/add">新增商户</a></div>
 	<ul>
-		<li><a href="#merchant/new-list">新入网(n)</a></li>
-		<li><a href="#merchant/export-unionpay">导出以银联(n)</a></li>
-		<li><a href="#merchant/export-oss">导出到OSS(n)</a></li>
-		<li><a href="#merchant/upload-scan-file">上传扫描件(n)</a></li>
-		<li><a href="#merchant/export-excel">导出到汇总(n)</a></li>
-		<li><a href="#merchant/finish">已完成(n)</a></li>
+		<li><a id="new_one">新入网(n)</a></li>
+		<li><a id="export_to_unionpay">导出以银联(n)</a></li>
+		<li><a id="export_to_oss">导出到OSS(n)</a></li>
+		<li><a id="upload_scan_file">上传扫描件(n)</a></li>
+		<li><a id="export_to_excel">导出到汇总(n)</a></li>
+		<li><a id="all_finished">已完成(n)</a></li>
 	</ul>
 </script>
 

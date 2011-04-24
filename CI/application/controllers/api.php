@@ -4,27 +4,38 @@ class Api extends REST_Controller {
 
 	
 	function merchants_get() {
-		$page = $this->get('page');
-		$limit = $this->get('limit');
-		$offset = ($page - 1) * $limit; 
-		$q = Doctrine_Query::create()
-	      ->select('m.*, a.bank_name')
-		  ->from('model_merchant m')
-		  ->leftJoin('m.Acquirer model_acquirer a')
-		  ->limit($limit)
-		  ->offset($offset);
-		//$m = $q->execute();
-		$this->response($q->fetchArray());
 		
-	}
-	
-	function merchantsCount_get() {
-		$q = new Doctrine_Query();
-		$q->select('count(m.name) count')
-		  ->from('model_merchant m');
-		$m = $q->execute();
-		$a = $m->toArray();
-		$this->response(array('totalCount'=> $a[0]['count']));
+		$action = $this->get('action');
+		
+		$page = $this->get('page') == 'undefined' ? 1 : $this->get('page');
+
+		$acquirer = $this->get('acquirer');
+		$status = $this->get('status');
+		
+		$limit = $this->get('limit');
+		$offset = ($page - 1) * $limit;
+		
+		$q = Doctrine_Query::create()->from('model_merchant m');
+		
+	    if($acquirer != 'undefined') $q->addWhere('m.acquirer_id = ?', $acquirer);
+		if($status != 'undefined') $q->addWhere('m.' . $status . ' = ?', true);
+		
+	    if($action == 'get_count') {
+	    	$q->select('count(m.name) count');			
+		} else {
+			$q->select('m.*, a.bank_name')
+			    ->leftJoin('m.Acquirer model_acquirer a')
+			    ->limit($limit)
+			    ->offset($offset);
+		}
+
+		$arr = $q->fetchArray();
+		if(count($arr) > 0) {
+			$this->response($arr);
+		} else {
+			$this->response(array('' => ''));
+		}
+		
 	}
 }
 

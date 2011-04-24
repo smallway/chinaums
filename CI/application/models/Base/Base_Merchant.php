@@ -33,6 +33,8 @@ Doctrine_Manager::getInstance()->bindComponent('Model_Merchant', 'chinaums');
  * @property boolean $export_to_oss
  * @property boolean $export_to_unionpay
  * @property boolean $upload_scan_file
+ * @property boolean $export_to_excel
+ * @property boolean $new_one
  * @property Model_Acquirer $Acquirer
  * @property Doctrine_Collection $Terminal
  * 
@@ -143,6 +145,12 @@ abstract class Model_Base_Merchant extends Doctrine_Record
              'type' => 'boolean',
              ));
         $this->hasColumn('upload_scan_file', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('export_to_excel', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('new_one', 'boolean', null, array(
              'type' => 'boolean',
              ));
     }
