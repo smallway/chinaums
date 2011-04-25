@@ -32,6 +32,23 @@ body {
 	border-top: 2px solid #BAD3EA;
 }
 
+button.g-button, a.g-button, input[type=submit].g-button {
+	padding: 6px 10px;
+	-webkit-border-radius: 2px 2px;
+	border: solid 1px rgb(153, 153, 153);
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(255, 255, 255)), to(rgb(221, 221, 221)));
+	color: #333;
+	text-decoration: none;
+	cursor: pointer;
+	display: inline-block;
+	text-align: center;
+	text-shadow: 0px 1px 1px rgba(255,255,255,1);
+	line-height: 1;
+}
+
+a {
+	cursor: pointer;
+}
 
 /*******************************************************************************
  * =layout
@@ -138,14 +155,26 @@ body {
  ******************************************************************************/
 #merchant-container {
 	.sidebar {
+		#sidebar-header {
+			background: @blue1;
+			text-align: center;
+			height: @action-height;
+			line-height: @action-height;
+			a.g-button {
+				padding: 3px 5px;
+				font-size: 100%;
+			}
+		}
 		ul {
 			li {
 				a {
 					display: block;
 					&:hover {
-						cursor: pointer;
-						background: @blue3;
+						background: @blue1;
 					}
+				}
+				a.selected {
+					background: @blue3;
 				}
 			}
 		}
@@ -161,6 +190,9 @@ body {
 				border: 0;
 				padding: 3px 5px;
 			}
+		}
+		#by-acquirer-container {
+			float: right;
 		}
 	}
 }

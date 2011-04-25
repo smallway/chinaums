@@ -15,10 +15,12 @@ class Api extends REST_Controller {
 		$limit = $this->get('limit');
 		$offset = ($page - 1) * $limit;
 		
-		$q = Doctrine_Query::create()->from('model_merchant m');
+		$q = Doctrine_Query::create()->from('model_merchant m')>orderBy('m.create_date');
 		
 	    if($acquirer != 'undefined') $q->addWhere('m.acquirer_id = ?', $acquirer);
-		if($status != 'undefined') $q->addWhere('m.' . $status . ' = ?', true);
+		if($status != 'undefined') $q->addWhere('m.' . $status . ' = ?', false);
+		
+
 		
 	    if($action == 'get_count') {
 	    	$q->select('count(m.name) count');			
@@ -36,6 +38,11 @@ class Api extends REST_Controller {
 			$this->response(array('' => ''));
 		}
 		
+	}
+
+	function acquirers_get() {
+		$q = Doctrine_Query::create()->from('model_acquirer a');
+		$this->response($q->fetchArray());
 	}
 }
 

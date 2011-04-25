@@ -180,7 +180,7 @@ Model_Merchant:
     create_date: '2011-03-20'
     send_date: '2011-03-17'
     receive_date: '2011-03-17'
-    new_one: false    
+    new_one: true    
     export_to_oss: false
     export_to_unionpay: false
     upload_scan_file: false
@@ -210,7 +210,7 @@ Model_Merchant:
     send_date: '2011-03-17'
     receive_date: '2011-03-17' 	
     new_one: false
-    export_to_oss: false
+    export_to_oss: true
     export_to_unionpay: false
     upload_scan_file: false  
     export_to_excel: false
@@ -240,7 +240,7 @@ Model_Merchant:
     receive_date: '2011-03-17' 
     new_one: false	
     export_to_oss: false
-    export_to_unionpay: false
+    export_to_unionpay: true
     upload_scan_file: false 
     export_to_excel: false  
   merchant_4:
@@ -264,14 +264,14 @@ Model_Merchant:
     is_discount: false
     is_comfirm_risk: false
     is_close_creditcard: false
-    create_date: '2011-03-20'
+    create_date: '2011-03-20 12:10:10'
     send_date: '2011-03-17'
     receive_date: '2011-03-17' 	
     new_one: true
     export_to_oss: false
     export_to_unionpay: false
     upload_scan_file: false 
-    export_to_excel: false
+    export_to_excel: true
   merchant_5:
     id: 5
     code: 929333059986307
@@ -297,7 +297,7 @@ Model_Merchant:
     send_date: '2011-03-17'
     receive_date: '2011-03-17' 
     new_one: true	
-    export_to_oss: false
+    export_to_oss: true
     export_to_unionpay: false
     upload_scan_file: false 
     export_to_excel: false            

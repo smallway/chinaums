@@ -20,6 +20,7 @@ Backbone.Notifier = function(options) {
 };
 
 _.extend(Backbone.Notifier.prototype, Backbone.Events, {
+
   notify: function(message) {
     this.trigger('message:arrived', message);
   }

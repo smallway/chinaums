@@ -21,7 +21,7 @@
 </script>
 
 <script type="text/template" id="merchant-home-sidebar-template">
-	<div id="sidebar-header"><a href="/merchants/add">新增商户</a></div>
+	<div id="sidebar-header"><a class="g-button">新增商户</a></div>
 	<ul>
 		<li><a id="new_one">新入网(n)</a></li>
 		<li><a id="export_to_unionpay">导出以银联(n)</a></li>
@@ -42,11 +42,20 @@
 
 <script type="text/template" id="pagination-template">
 	<div id="pagination">
-		<span><a href="#">« previous</a></span>
+		<span><a id="previous">« previous</a></span>
 		<span><input type="text" id="page-input" /> / <%= totalPage %></span>
-		<span><a href="#">next »</a></span>
+		<span><a id="next">next »</a></span>
 		<span>total:<%= totalCount %></span>
 	</div>
+</script>
+
+<script type="text/template" id="by-acquirer-template">
+	<select>
+	    <option value="undefined">所有银行</option>
+	<% _.each(acquirers, function(a) {%>
+		<option value="<%= a.id%>"><%= a.bank_name %></option>
+	<% });%>
+	</select>
 </script>
 
 

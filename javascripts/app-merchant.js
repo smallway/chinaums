@@ -12,6 +12,8 @@
 			this.el.html(this.template({}));
 		},
 		getStatus: function(e){
+			this.$('li a').removeClass('selected');
+			$(e.currentTarget).addClass('selected');
 			merchants.byStatus($(e.currentTarget).attr('id'));
 		}
 	});
@@ -29,7 +31,8 @@
 	var MerchantList = Backbone.Collection.extend({
 		model: Merchant,
 		initialize: function() {
-			this.limit = 3;
+			this.limit = 5;
+			this.currentPage = 1;
 			this.bind('refresh', this.getTotalCount);
 		},
 
@@ -46,7 +49,8 @@
 			this.fetch();
 		},
 		byAcquirer: function(acquirer) {
-			
+			this.acquirer = acquirer;
+			this.fetch();
 		},
 		byStatus: function(status) {
 			this.status = status;
@@ -114,7 +118,9 @@
 		template: _.template($('#pagination-template').html()),
 		el: $('#merchant-container .action #pagination-container'),
 		events: {
-			'keypress #merchant-container .action #page-input': 'gotoPageOnEnter'
+			'keypress #merchant-container .action #page-input': 'gotoPageOnEnter',
+			'click  #merchant-container .action #next': 'next',
+			'click  #merchant-container .action #previous': 'previous'
 		},
 		initialize: function() {
 			
@@ -135,7 +141,44 @@
 			if(e.keyCode != 13) return;
 			merchants.gotoPage(this.input.val());
 		},
+		
+		next: function() {
+			var nextPage = parseInt(this.input.val()) + 1;
+			if(nextPage <= merchants.totalPage) {
+				this.input.val(nextPage);
+				merchants.gotoPage(nextPage);
+			}
+		},
+		previous: function() {
+			var prePage = parseInt(this.input.val()) - 1;
+			if(prePage > 0) {
+				this.input.val(prePage);
+				merchants.gotoPage(prePage);
+			}
+		}
 	});
 	new PaginationView;
+	/************************************************************************
+	 * by acquirer
+	 ***********************************************************************/
+	 var ByAcquirerView = Backbone.View.extend({
+	 	el: $('#by-acquirer-container'),
+	 	template: _.template($('#by-acquirer-template').html()),
+	 	initialize: function() {
+	 		_.bindAll(this, 'render', 'changeAcquirer');
+	 		$.getJSON('/ci/api/acquirers/format/json', this.render);
+	 	},
+	 	render: function(resp) {
+	 		this.el.html(this.template({acquirers: resp}));
+	 		this.select = this.$('select');
+	 		this.select.bind('change', this.changeAcquirer);
+	 	},
+	 	changeAcquirer: function() {
+	 		console.log(this.select.val());
+	 		merchants.byAcquirer(this.select.val());
+	 	}
+	 	
+	 });
+	 var byAcquirer = new ByAcquirerView;
 	
 })();
