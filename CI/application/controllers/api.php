@@ -40,7 +40,7 @@ class Api extends REST_Controller {
 
 		$arr = $q->fetchArray();
 		
-		count($arr) > 0 ? $this->response($arr) : $this->response(array('' => ''));
+		count($arr) > 0 ? $this->response($arr) : $this->response(array(''));
 
 		
 	}

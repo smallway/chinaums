@@ -27,7 +27,7 @@
     	</div>
     </div>
     
-	<div id="notifications"><div class="wrapper"></div></div>
+	<div id="notification"></div>
 	
 	<?php include 'template.tpl';?>
 	<?php include 'javascripts/scripts.php';?>
