@@ -69,7 +69,7 @@ Merchant:
     is_close_creditcard:
       type: boolean
     create_date:
-      type: date(25)
+      type: datetime
     send_date:
       type: date(25)
     receive_date:

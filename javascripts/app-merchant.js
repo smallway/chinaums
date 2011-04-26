@@ -9,12 +9,19 @@
 			'click #merchant-container .sidebar li a': 'getStatus'
 		},
 		initialize: function() {
-			this.el.html(this.template({}));
+			this.render();
 		},
 		getStatus: function(e){
 			this.$('li a').removeClass('selected');
 			$(e.currentTarget).addClass('selected');
 			merchants.byStatus($(e.currentTarget).attr('id'));
+		},
+		
+		render: function() {
+			var that = this;
+			$.getJSON('/ci/api/count_by_status/format/json', function(resp) {
+				that.el.html(that.template(resp));
+			});
 		}
 	});
 	new HomeSidebar;

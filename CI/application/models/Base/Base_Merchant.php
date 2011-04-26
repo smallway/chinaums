@@ -27,7 +27,7 @@ Doctrine_Manager::getInstance()->bindComponent('Model_Merchant', 'chinaums');
  * @property boolean $is_discount
  * @property boolean $is_comfirm_risk
  * @property boolean $is_close_creditcard
- * @property date $create_date
+ * @property datetime $create_date
  * @property date $send_date
  * @property date $receive_date
  * @property boolean $export_to_oss
@@ -126,9 +126,8 @@ abstract class Model_Base_Merchant extends Doctrine_Record
         $this->hasColumn('is_close_creditcard', 'boolean', null, array(
              'type' => 'boolean',
              ));
-        $this->hasColumn('create_date', 'date', 25, array(
-             'type' => 'date',
-             'length' => '25',
+        $this->hasColumn('create_date', 'datetime', null, array(
+             'type' => 'datetime',
              ));
         $this->hasColumn('send_date', 'date', 25, array(
              'type' => 'date',

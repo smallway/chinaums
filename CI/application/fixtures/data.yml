@@ -177,7 +177,7 @@ Model_Merchant:
     is_discount: false
     is_comfirm_risk: false
     is_close_creditcard: false
-    create_date: '2011-03-20'
+    create_date: '2011-03-20 12:12:12'
     send_date: '2011-03-17'
     receive_date: '2011-03-17'
     new_one: true    
