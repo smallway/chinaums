@@ -11,15 +11,22 @@
     <div id="header"></div>
     
     <div id="app-container">
+    	
     	<div id="merchant-container" rel="merchant" class="container-view" style="display: none">
-    		<div class="sidebar"></div>
+    		<div class="sidebar">
+    			<div id="home-sidebar"></div>
+    			<div id="new-list"></div>
+    		</div>
     		<div class="action">
-
     			<div id="pagination-container"></div>
     			<div id="by-acquirer-container"></div>
     		</div>
-    		<div class="content"><table></table></div>
+    		<div class="content">
+    			<table></table>
+    			<div id="add-merchant-form"></div>
+    			</div>
     	</div>
+    	
     	<div id="another-container" rel="another" class="container-view" style="display: none">
     		<div class="sidebar">Another Sidbar</div>
     		<div class="action">Another Action</div>

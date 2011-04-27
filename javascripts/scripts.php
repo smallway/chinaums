@@ -13,6 +13,7 @@ $js_files = array('vendor/less',
 				  'merchant/home-sidebar',				  
 				  'merchant/new-list',				  
 				  'merchant/acquirer-select',
+				  'merchant/add-form',
 				  'container',
 				  'header',
 				  'controller'

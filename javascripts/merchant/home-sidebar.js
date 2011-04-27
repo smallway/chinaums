@@ -1,11 +1,11 @@
 (function() {
 	var merchants = MERCHANT.merchants;
 	var HomeSidebar = Backbone.View.extend({
-		el: $('#merchant-container .sidebar'),
+		el: $('#merchant-container .sidebar #home-sidebar'),
 		template: _.template($('#merchant-home-sidebar-template').html()),
 		events: {
 			'click li a': 'getStatus',
-			'click .sidebar-header a': 'addForm'
+			'click #home-sidebar .sidebar-header a': 'addForm'
 		},
 		initialize: function() {
 			this.render();
@@ -23,11 +23,12 @@
 			});
 		},
 		addForm: function() {
-			this.$('div').hide();
+			this.el.hide();
 			MERCHANT.merchantListView.el.hide();
 			MERCHANT.pagination.el.hide();
 			MERCHANT.byAcquirer.el.hide();
-			MERCHANT.newList = new MERCHANT.NewList;
+			MERCHANT.addForm.el.show();		
+			MERCHANT.newList ? MERCHANT.newList.el.show() : MERCHANT.newList = new MERCHANT.NewList;
 		}
 	});
 	MERCHANT.homeSidebar = new HomeSidebar;	
