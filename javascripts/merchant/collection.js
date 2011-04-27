@@ -7,12 +7,16 @@
 	var MerchantList = Backbone.Collection.extend({
 		model: Merchant,
 		initialize: function() {
+			console.log(this);
 			this.limit = 2;
 			this.currentPage = 1;
 			this.bind('refresh', this.getTotalCount);
+			this.bind('refresh', notifier.clear);
 		},
+		
 
 		url: function() {
+			notifier.notify(Notifications.LOADDING);
 			return '/ci/api/merchants' + 
 				   '/page/' + this.currentPage + 
 				   '/limit/'+ this.limit + 
@@ -41,11 +45,6 @@
 				that.trigger('getTotalCount');
 			});
 		},
-
-		
-		setUrl: function(page, limit, aqcuirer) {
-			
-		}
 	});
 	
 	MERCHANT.merchants = new MerchantList;	

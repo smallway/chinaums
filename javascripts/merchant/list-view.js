@@ -19,7 +19,6 @@
 			_.bindAll(this, 'addAll', 'addOne');
 			merchants.bind('refresh', this.addAll);
 			merchants.fetch();
-			notifier.notify(Notifications.LOADDING, this.cid);
 		},
 		
 		addOne: function(merchant) {
@@ -30,7 +29,6 @@
 		addAll: function() {
 			this.el.find('tr').remove();
 			if(merchants.first().id != undefined) merchants.each(this.addOne);
-			notifier.remove(this.cid);
 		}
 	});
 	

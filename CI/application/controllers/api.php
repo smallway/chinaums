@@ -45,6 +45,14 @@ class Api extends REST_Controller {
 		
 	}
 
+	function new_merchant_list_get() {
+		$q = Doctrine_Query::create()
+			 ->select('m.name')
+			 ->from('model_merchant m')
+			 ->where('m.new_one = ?', false);
+		$this->response($q->fetchArray());
+	}
+
 	function acquirers_get() {
 		$q = Doctrine_Query::create()->from('model_acquirer a');
 		$this->response($q->fetchArray());

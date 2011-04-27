@@ -17,5 +17,5 @@
 	 	}
 	 	
 	 });
-	 var byAcquirer = new ByAcquirerView;	
+	 MERCHANT.byAcquirer = new ByAcquirerView;	
 })();

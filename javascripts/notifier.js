@@ -19,9 +19,8 @@ var Notifications = {
 	var Notifier = Backbone.View.extend({
 		el: $('#notification'),
 		initialize: function() {},
-		notify: function(message, cid) {
-			console.log(cid);
-			this.el.append('<div  id="' + cid + '" class="' + message.type + '"> ' + message.content + '</div>');
+		notify: function(message) {
+			this.el.html('<div class="' + message.type + '"> ' + message.content + '</div>');
 			if(message.autoDisappear) {
 				setTimeout(function() {
 					this.el.html();
@@ -29,11 +28,8 @@ var Notifications = {
 			}
 		},
 		clear: function() {
-			this.el.html();
+			$('#notification').html('');
 		},
-		remove: function(cid) {
-			this.$('#' + cid).remove();
-		}
 		
 	});
 	

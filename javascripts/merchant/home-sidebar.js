@@ -5,7 +5,7 @@
 		template: _.template($('#merchant-home-sidebar-template').html()),
 		events: {
 			'click li a': 'getStatus',
-			'click #sidebar-header a': 'addForm'
+			'click .sidebar-header a': 'addForm'
 		},
 		initialize: function() {
 			this.render();
@@ -23,8 +23,11 @@
 			});
 		},
 		addForm: function() {
-			this.el.hide();
-			merchantListView.el.hide();
+			this.$('div').hide();
+			MERCHANT.merchantListView.el.hide();
+			MERCHANT.pagination.el.hide();
+			MERCHANT.byAcquirer.el.hide();
+			MERCHANT.newList = new MERCHANT.NewList;
 		}
 	});
 	MERCHANT.homeSidebar = new HomeSidebar;	

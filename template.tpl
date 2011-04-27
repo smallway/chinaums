@@ -21,7 +21,8 @@
 </script>
 
 <script type="text/template" id="merchant-home-sidebar-template">
-	<div id="sidebar-header"><a class="g-button">新增商户</a></div>
+	<div>
+	<div class="sidebar-header"><a class="g-button">新增商户</a></div>
 	<ul>
 		<li><a id="new_one">新入网<span>(<%= new_one %>)</span></a></li>
 		<li><a id="export_to_unionpay">导出以银联<span>(<%= export_to_unionpay %>)</span></a></li>
@@ -29,6 +30,14 @@
 		<li><a id="upload_scan_file">上传扫描件<span>(<%= upload_scan_file  %>)</span></a></li>
 		<li><a id="export_to_excel">导出到汇总<span>(<%= export_to_excel %>)</span></a></li>
 		<li><a id="all_finished">已完成<span>(<%= all_finished %>)</span></a></li>
+	</ul>
+	</div>
+</script>
+
+<script type="text/template" id="merchant-new-list-template">
+	<div class="sidebar-header"><a class="g-button">返回</a></div>
+	<ul>
+		<li>Hi...</li>
 	</ul>
 </script>
 
