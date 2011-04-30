@@ -4,13 +4,15 @@ var Notifications = {
   LOADDING: {
     content: 'Loadding...',
     type: 'info',
-    autoDisappear: false
+    autoDisappear: false,
+    width: '100px'
   },
   
-  TEST: {
-  	content: 'Get it',
+  HONGDUN: {
+  	content: 'Getting Merchant...',
   	type: 'info',
-  	autoDisappear: false
+  	autoDisappear: false,
+  	width: '150px'
   }
 
 };
@@ -20,7 +22,7 @@ var Notifications = {
 		el: $('#notification'),
 		initialize: function() {},
 		notify: function(message) {
-			this.el.html('<div class="' + message.type + '"> ' + message.content + '</div>');
+			this.el.html('<span class="' + message.type + '" style="width:' + message.width +  '"> ' + message.content + '</span>');
 			if(message.autoDisappear) {
 				setTimeout(function() {
 					this.el.html();

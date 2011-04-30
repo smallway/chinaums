@@ -18,8 +18,15 @@ a {
  color: #003399;
  background-color: transparent;
  font-weight: normal;
+ text-decoration: none;
+ width: 300px;
+ display: block;
+ padding: 5px;
 }
-
+a:hover {
+	background: #003399;
+	color: white;
+}
 h1 {
  color: #444;
  background-color: transparent;
@@ -49,8 +56,8 @@ code {
 
 
 <ul>
-	<?php foreach($data as $key => $value) {?>
-		<li><a href="/ci/database/<?php echo $value ?>"><?php echo $key ?></a></li>
+	<?php foreach($data as $v) {?>
+		<li><a href="/ci/database/<?php echo $v ?>"><?php echo $v ?></a></li>
 	<?php } ?>
 </ul>
 

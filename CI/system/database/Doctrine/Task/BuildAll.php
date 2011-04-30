@@ -55,7 +55,7 @@ class Doctrine_Task_BuildAll extends Doctrine_Task
     {
         $this->models->setArguments($this->getArguments());
         $this->models->execute();
-        
+
         $this->createDb->setArguments($this->getArguments());
         $this->createDb->execute();
         

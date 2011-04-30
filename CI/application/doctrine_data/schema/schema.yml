@@ -101,7 +101,7 @@ Terminal:
     id:
       type: integer(8)
       primary: true
-      autoincrement: false
+      autoincrement: true
     merchant_id:
       type: integer(8)
     terminal_no:
@@ -111,3 +111,20 @@ Terminal:
       local: merchant_id
       foreign: id
       type: one
+Branch_bank:
+  connection: chinaums
+  tableName: branch_bank
+  columns:
+    id: 
+      type: integer(8)
+      primary: true
+      autoincrement: true
+    acquirer_id:
+      type: integer(8)
+    branch_name:
+      type: string(255)
+  relations:
+    Acquirer:
+      local: acquirer_id
+      foreign: id
+      type: one      

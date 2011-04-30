@@ -66,8 +66,7 @@ $db['default']['dsn'] = $db['default']['dbdriver'] .
                         '://' . $db['default']['username'] .
                         ':' . $db['default']['password'].
                         '@' . $db['default']['hostname'] .
-                        '/' . $db['default']['database'].
-                        '' . '?charset=utf-8';
+                        '/' . $db['default']['database'] . '?charset=utf8';
  
 // Require Doctrine.php
 require_once(realpath(dirname(__FILE__) . '/../..') . DIRECTORY_SEPARATOR . 'system/database/Doctrine.php');
@@ -76,10 +75,15 @@ require_once(realpath(dirname(__FILE__) . '/../..') . DIRECTORY_SEPARATOR . 'sys
 spl_autoload_register(array('Doctrine', 'autoload'));
  
 // Load the Doctrine connection
-Doctrine_Manager::connection($db['default']['dsn'], $db['default']['database'])
-->setCharset('UTF8')
-;
- 
+Doctrine_Manager::connection($db['default']['dsn'], $db['default']['database']);
+
+
+try {
+	Doctrine_Manager::connection()->setCharset('utf8');
+} catch(Exception $ne) {
+	//throw nothing...
+}
+
 // Load the models for the autoloader
 Doctrine::loadModels(realpath(dirname(__FILE__) . '/..') . DIRECTORY_SEPARATOR . 'models');
 

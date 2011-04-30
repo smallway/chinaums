@@ -27,7 +27,7 @@
 			MERCHANT.merchantListView.el.hide();
 			MERCHANT.pagination.el.hide();
 			MERCHANT.byAcquirer.el.hide();
-			MERCHANT.addForm.el.show();		
+			MERCHANT.addForm ? MERCHANT.addForm.el.show() : MERCHANT.addForm = new MERCHANT.AddForm;
 			MERCHANT.newList ? MERCHANT.newList.el.show() : MERCHANT.newList = new MERCHANT.NewList;
 		}
 	});

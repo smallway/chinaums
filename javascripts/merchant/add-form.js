@@ -2,16 +2,65 @@
 	var AddForm = Backbone.View.extend({
 		el: $('#add-merchant-form'),
 		template: _.template($('#add-merchant-form-template').html()),
+		events: {
+			'keypress #add-merchant-form #license_no': 'getNameAndAddress'
+		},
 		initialize: function() {
-			this.el.hide();
-			this.el.html(this.template({}));
-			this.validate();
+			this.render();
+			this.getMcc();
+		},
+		
+		render: function() {
+			this.el.html(this.template({acquirers: MERCHANT.acquirers}));
+			this.license_no = this.$('#license_no');
+			this.name = this.$('#name');
+			this.addr = this.$('#addr');
+			this.validate();			
+		},
+		
+		getNameAndAddress: function(e) {
+			if(e.keyCode != 13) return;
+			e.preventDefault();
+			if(this.lv_license.validate()) {
+				var that = this;
+				notifier.notify(Notifications.HONGDUN);
+				$.getJSON('/ci/api/get_name_and_address/format/json/license_no/' + this.license_no.val(), function(resp) {
+					that.name.val(resp.name);
+					that.addr.val(resp.addr);
+					notifier.clear();
+				});
+			}
+			
+		},
+		
+		getMcc: function(){
+			if(!MERCHANT.mcc) {
+				$.getJSON('/ci/api/mcc/format/json', function(resp) {
+					MERCHANT.mcc = resp;
+			
+					/**
+					 * auto complete
+					 */
+					$('#mcc').autocomplete(MERCHANT.mcc, {
+						after_this: true,
+						width: 260,
+						li_title: 'description', 
+						formatItem: function(item) {
+							return item.mcc + ' - ' + item.rate + ' - ' + item.description;
+						}
+					}).result(function(event, item) {
+						$('#mcc').val(item.mcc);
+						$('#rate').val(item.rate);
+						$('#desc').html(item.description);	
+					});					
+				});
+			} 
 		},
 		
 		validate: function() {
-			var lv_license = new LiveValidation('license_no');
-			lv_license.add( Validate.Presence, { failureMessage: "必填!" } );
-			lv_license.add( Validate.Length, {is:[13,15],wrongLengthMessage:'必须是13或15位数字'} );	
+			this.lv_license = new LiveValidation('license_no');
+			this.lv_license.add( Validate.Presence, { failureMessage: "必填!" } );
+			this.lv_license.add( Validate.Length, {is:[13,15],wrongLengthMessage:'必须是13或15位数字'} );	
 		
 			var lv_name = new LiveValidation('name');
 			lv_name.add( Validate.Presence, { failureMessage: "必填!" } );
@@ -26,23 +75,6 @@
 			var lv_mcc = new LiveValidation('mcc');
 			lv_mcc.add( Validate.Presence, { failureMessage: "必填!" } );
 			lv_mcc.add(Validate.Length, {is:4, wrongLengthMessage:'必须4位数字'});
-			
-			/**
-			 * auto complete
-			 */
-			$('#mcc').autocomplete(mcc, {
-				after_this: true,
-				width: 260,
-				li_title: 'desc', 
-				formatItem: function(item) {
-					return item.mcc + ' - ' + item.rate + ' - ' + item.desc;
-				}
-			}).result(function(event, item) {
-				$('#mcc').val(item.mcc);
-				$('#rate').val(item.rate);
-				$('#desc').html(item.desc);	
-			});
-			
 			
 			/*date picker */
 			$.extend(DateInput.DEFAULT_OPTS, {
@@ -71,5 +103,5 @@
 			$('#receive_date').date_input();						
 		}
 	});
-	MERCHANT.addForm = new AddForm;
+	MERCHANT.AddForm = AddForm;
 })();

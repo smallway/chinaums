@@ -116,7 +116,14 @@
 
 <div class="form-row form-row-left">
 	<div class="form-label">收单银行：</div>
-	<div class="form-field"><?php echo $banks_select ?></div>
+	<div class="form-field">
+		<select>
+		    <option value="undefined">--select--</option>
+		<% _.each(acquirers, function(a) {%>
+			<option value="<%= a.id%>"><%= a.bank_name %></option>
+		<% });%>
+		</select>
+	</div>
 </div>
 
 <div class="form-row form-row-right">

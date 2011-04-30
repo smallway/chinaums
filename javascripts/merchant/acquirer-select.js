@@ -8,6 +8,7 @@
 	 		$.getJSON('/ci/api/acquirers/format/json', this.render);
 	 	},
 	 	render: function(resp) {
+	 		MERCHANT.acquirers = resp;
 	 		this.el.html(this.template({acquirers: resp}));
 	 		this.select = this.$('select');
 	 		this.select.bind('change', this.changeAcquirer);

@@ -16,7 +16,7 @@ class Api extends REST_Controller {
 		$limit = $this->get('limit');
 		$offset = ($page - 1) * $limit;
 		
-		$q = Doctrine_Query::create()->from('model_merchant m')->orderBy('m.create_date');
+		$q = Doctrine_Query::create()->from('merchant m')->orderBy('m.create_date');
 		
 	    if($acquirer != 'undefined') $q->addWhere('m.acquirer_id = ?', $acquirer);
 		if($status == 'all_finished') {
@@ -33,7 +33,7 @@ class Api extends REST_Controller {
 		//for list		
 		} else {
 			$q->select('m.*, a.bank_name')
-			    ->leftJoin('m.Acquirer model_acquirer a')
+			    ->leftJoin('m.Acquirer acquirer a')
 			    ->limit($limit)
 			    ->offset($offset);
 		}
@@ -48,13 +48,18 @@ class Api extends REST_Controller {
 	function new_merchant_list_get() {
 		$q = Doctrine_Query::create()
 			 ->select('m.name')
-			 ->from('model_merchant m')
+			 ->from('merchant m')
 			 ->where('m.new_one = ?', false);
 		$this->response($q->fetchArray());
 	}
 
 	function acquirers_get() {
-		$q = Doctrine_Query::create()->from('model_acquirer a');
+		$q = Doctrine_Query::create()->from('acquirer a');
+		$this->response($q->fetchArray());
+	}
+	
+	function branch_bank_get() {
+		$q = Doctrine_Query::create()->from('branch_bank');
 		$this->response($q->fetchArray());
 	}
 	
@@ -69,7 +74,7 @@ class Api extends REST_Controller {
 		
 		$new_one = $export_to_unionpay = $export_to_oss = $upload_scan_file = $export_to_excel = 0;
 		
-		$all = Doctrine_Core::getTable('model_merchant')->findAll();
+		$all = Doctrine_Core::getTable('merchant')->findAll();
 		
 		
 		foreach($all as $m) {
@@ -88,6 +93,47 @@ class Api extends REST_Controller {
 		
 	}
 
+	//hongdun...
+	function get_name_and_address_get() {
+		
+		require_once APPPATH.'/libraries/simple_html_dom.php';
+
+		//$dom->load(file_get_contents('http://www.wenzhou315.gov.cn/bszn/qyjbxx_search.php?searchkey='.trim($license)), true);
+		$html = file_get_html('http://www.wenzhou315.gov.cn/bszn/qyjbxx_search.php?searchkey=' . $this->get('license_no'));
+
+		$original_link = $html->find('#main_list_right table a', 0);
+		
+		$arr = array();
+		
+		//check does have this enterprise
+		if(is_object ($original_link)) {
+			$detail_link = 'http://www.wenzhou315.gov.cn' . substr($original_link->href, 2);
+			
+			//get the detail...
+			$html = file_get_html($detail_link);
+			//html 
+			//return $html->find('table', 6);
+			$table = $html->find('table', 6);
+			
+			$arr = array();
+			$arr['name'] = iconv('GBK', 'UTF-8', $table->children(1)->children(3)->innertext);
+			$arr['license_no'] = $table->children(3)->children(3)->innertext;
+			$arr['addr'] = iconv('GBK', 'UTF-8', $table->children(5)->children(3)->innertext);
+			$arr['start_date'] = iconv('GBK', 'UTF-8', $table->children(7)->children(3)->innertext);
+			$arr['scrop']= iconv('GBK', 'UTF-8', $table->children(9)->children(3)->innertext); 
+
+		} else {
+			$arr['name'] = 'No Found...';
+		}
+		
+		$this->response($arr);
+		
+	}
+
+	function mcc_get() {
+		$q = Doctrine_Query::create()->from('mcc');
+		$this->response($q->fetchArray());
+	}
 }
 
 
