@@ -32,7 +32,7 @@ class Api extends REST_Controller {
 	    	$q->select('count(m.name) count');	
 		//for list		
 		} else {
-			$q->select('m.*, a.bank_name')
+			$q->select('m.*, a.name')
 			    ->leftJoin('m.Acquirer acquirer a')
 			    ->limit($limit)
 			    ->offset($offset);
@@ -54,12 +54,12 @@ class Api extends REST_Controller {
 	}
 
 	function acquirers_get() {
-		$q = Doctrine_Query::create()->from('acquirer a');
+		$q = Doctrine_Query::create()->from('acquirer a')->orderBy('a.id');
 		$this->response($q->fetchArray());
 	}
 	
-	function branch_bank_get() {
-		$q = Doctrine_Query::create()->from('branch_bank');
+	function branch_get() {
+		$q = Doctrine_Query::create()->from('branch');
 		$this->response($q->fetchArray());
 	}
 	
@@ -128,6 +128,25 @@ class Api extends REST_Controller {
 		
 		$this->response($arr);
 		
+	}
+
+	function generate_code_get() {
+		$prefix = $this->get('prefix');
+		$q = Doctrine_Query::create()
+			 ->select('m.code')
+			 ->from('merchant m')
+			 ->orderBy('m.code DESC')
+			 ->where('m.code LIKE ?', $prefix . '____');
+		$arr = $q->fetchArray();
+		$result = '';
+		if(count($arr) == 0) {
+			$result = $prefix . '0001';
+		} else {
+			$code = $arr[0]['code'];
+			$result = sprintf('%04d', substr($code, 11) + 1);
+			$result = $prefix . $result;
+		}
+		$this->response(array('code' => $result));
 	}
 
 	function mcc_get() {

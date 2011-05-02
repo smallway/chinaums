@@ -3,15 +3,13 @@ Acquirer:
   tableName: acquirer
   columns:
     id:
-      type: integer(8)
+      type: string(10)
       primary: true
-      autoincrement: true
-    bank_name:
+      autoincrement: false
+    name:
       type: string(255)
-    acquirer_account:
+    account:
       type: string(255)
-    acquirer_code:
-      type: string(64)
     mcc_prefix:
       type: string(7)
     account_regex:
@@ -21,6 +19,25 @@ Acquirer:
       local: id
       foreign: acquirer_id
       type: many  
+###################################      
+Branch:
+  connection: chinaums
+  tableName: branch
+  columns:
+    id: 
+      type: integer(8)
+      primary: true
+      autoincrement: true
+    acquirer_id:
+      type: string(10)
+    name:
+      type: string(255)
+  relations:
+    Acquirer:
+      local: acquirer_id
+      foreign: id
+      type: one       
+###################################
 Merchant:
   connection: chinaums
   tableName: merchant
@@ -47,8 +64,8 @@ Merchant:
     contact:
       type: string(255)
     acquirer_id:
-      type: integer(8)
-    deposit_bank:
+      type: string(10)
+    branch:
       type: string(255)
     account:
       type: string(255)
@@ -68,6 +85,9 @@ Merchant:
       type: boolean
     is_close_creditcard:
       type: boolean
+    draft:
+      type: boolean
+      default: false 	  
     create_date:
       type: datetime
     send_date:
@@ -93,7 +113,7 @@ Merchant:
       local: id
       foreign: merchant_id
       type: many
-   
+###################################
 Terminal:
   connection: chinaums
   tableName: terminal
@@ -111,20 +131,15 @@ Terminal:
       local: merchant_id
       foreign: id
       type: one
-Branch_bank:
+###################################       
+Mcc:
   connection: chinaums
-  tableName: branch_bank
+  tableName: mcc
   columns:
     id: 
       type: integer(8)
       primary: true
       autoincrement: true
-    acquirer_id:
-      type: integer(8)
-    branch_name:
-      type: string(255)
-  relations:
-    Acquirer:
-      local: acquirer_id
-      foreign: id
-      type: one      
+    description: string(255)
+    mcc: string(255)
+    rate: string(255)          

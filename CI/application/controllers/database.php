@@ -20,9 +20,18 @@ class Database extends CI_Controller {
 				   'loadData',
 				   'dumpData',
 				   'generateModelsFromDb',
-				   'generateYamlFromDb');
+				   'generateYamlFromDb',
+				   'buildAll');
 		sort($a);
 		$this->load->view('database', array('data' => $a));
+	}
+	
+	function buildAll() {
+		$this->dropDb();
+		$this->createDb();
+		$this->createDb();
+		$this->generateModelsFromYaml();
+		$this->loadData();
 	}
 	
 	function dropDb() {

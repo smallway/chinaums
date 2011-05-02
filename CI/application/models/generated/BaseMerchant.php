@@ -16,8 +16,8 @@ Doctrine_Manager::getInstance()->bindComponent('Merchant', 'chinaums');
  * @property string $tax_no
  * @property string $id_card
  * @property string $contact
- * @property integer $acquirer_id
- * @property string $deposit_bank
+ * @property string $acquirer_id
+ * @property string $branch
  * @property string $account
  * @property string $mcc
  * @property string $rate
@@ -87,11 +87,11 @@ abstract class BaseMerchant extends Doctrine_Record
              'type' => 'string',
              'length' => '255',
              ));
-        $this->hasColumn('acquirer_id', 'integer', 8, array(
-             'type' => 'integer',
-             'length' => '8',
+        $this->hasColumn('acquirer_id', 'string', 10, array(
+             'type' => 'string',
+             'length' => '10',
              ));
-        $this->hasColumn('deposit_bank', 'string', 255, array(
+        $this->hasColumn('branch', 'string', 255, array(
              'type' => 'string',
              'length' => '255',
              ));
