@@ -74,9 +74,6 @@
 	<div id="add-form-container">
 	<form action="/merchants/add/save" method="POST">
 	
-	<input type="hidden" name="id" value="<?php echo isset($m_edit->id) ? $m_edit->id : '' ; ?>" />
-	
-	
 	<div class="form-row form-row-left">
 		<div class="form-label">注册号：</div>
 		<div class="form-field">
@@ -91,7 +88,7 @@
 	
 	<div class="form-row form-row-left">
 		<div class="form-label">地址：</div>
-		<div class="form-field"><input id="addr" name="addr" autocomplete="off" value="<?php echo isset($m_edit) ? $m_edit->addr : '' ; ?>" /></div>
+		<div class="form-field"><input id="addr" type="text" name="addr" autocomplete="off" value="<?php echo isset($m_edit) ? $m_edit->addr : '' ; ?>" /></div>
 	</div>
 	
 	<div class="form-row form-row-right">
@@ -103,7 +100,7 @@
 	<div class="form-row form-row-left">
 		<div class="form-label">商户类型：</div>
 		<div class="form-field" id="mcc-field">
-			<input id="mcc" name="mcc" autocomplete="off" maxLength="4" value="<?php echo isset($m_edit) ? $m_edit->mcc : '' ; ?>" />
+			<input id="mcc" name="mcc" type="text" autocomplete="off" maxLength="4" value="<?php echo isset($m_edit) ? $m_edit->mcc : '' ; ?>" />
 			<div id="desc"></div>
 		</div>
 	</div>
@@ -154,7 +151,7 @@
 	
 	<div class="form-row form-row-right">
 		<div class="form-label">证件号码：</div>
-		<div class="form-field"><input id="idcard" name="idcard" autocomplete="off" value="<?php echo isset($m_edit) ? $m_edit->idcard : '' ; ?>" /></div>
+		<div class="form-field"><input id="id_card" name="id_card" autocomplete="off" value="<?php echo isset($m_edit) ? $m_edit->idcard : '' ; ?>" /></div>
 	</div>
 	
 	
@@ -166,7 +163,7 @@
 	</div>
 	<div class="form-row form-row-right">
 		<div class="form-label">法人：</div>
-		<div class="form-field"><input id="people" name="people" autocomplete="off" value="<?php echo isset($m_edit) ? $m_edit->people : '' ; ?>" /></div>
+		<div class="form-field"><input id="legal_person" name="legal_person" autocomplete="off" value="<?php echo isset($m_edit) ? $m_edit->people : '' ; ?>" /></div>
 	</div>
 	
 	
@@ -218,8 +215,8 @@
 </script>
 
 <script type="text/template" id="branch-template">
-	<select name="branch">
-		<option>--select--</option>
+	<select name="branch" id="branch">
+		<option value="undefined">--select--</option>
 		<% _.each(branch, function(b) { %>
 				<option value="<%= b.name %>"><%= b.name %></option>
 		<%});%>

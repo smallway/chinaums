@@ -4,8 +4,10 @@
 		template: _.template($('#add-merchant-form-template').html()),
 		events: {
 			'keypress #add-merchant-form #license_no': 'getNameAndAddress',
-			'change #add-merchant-form #acquirer-select': 'changeAcquirer'
+			'change #add-merchant-form #acquirer-select': 'changeAcquirer',
+			'submit #add-merchant-form form': 'submit'
 		},
+		validation: new Array(),
 		initialize: function() {
 			this.render();
 			this.getMcc();
@@ -20,12 +22,16 @@
 		},
 		
 		bindElement: function() {
+			this.form = this.$('form');
+			
 			this.license_no = this.$('#license_no');
 			this.name = this.$('#name');
 			this.addr = this.$('#addr');
-			this.branchWrapper = this.$('#branch-wrapper');
-			this.acquirer = this.$('#acquirer-select');
 			this.code = this.$('#code');
+			this.acquirer = this.$('#acquirer-select');
+			this.branchWrapper = this.$('#branch-wrapper');
+			
+			
 			this.mcc = this.$('#mcc');
 			this.rate = this.$('#rate');
 		},
@@ -43,14 +49,22 @@
 			this.renderBranch(this.acquirer.val());
 			this.generateCode();
 			this.bindAccountValidate();
+			this.bindBranchValidate();
 		},
 		
 		bindAccountValidate: function() {
 			var lv_account = new LiveValidation('account');
-			lv_account.add( Validate.Presence, { failureMessage: "必填!" } );
+			lv_account.add( Validate.Presence, { failureMessage: "Can't be empty!" } );
 			console.log(this.currentAcquirer.account_regex);
-			lv_account.add(Validate.Format, {pattern:new RegExp(this.currentAcquirer.account_regex), failureMessage: '账号错！'});
+			lv_account.add(Validate.Format, {pattern:new RegExp(this.currentAcquirer.account_regex), failureMessage: 'Wrong account!'});
+			this.validation.push(lv_account);
 			
+		},
+		
+		bindBranchValidate: function() {
+			var lv_branch = new LiveValidation('branch');
+			lv_branch.add(Validate.Exclusion, { within: [ 'undefined' ], failureMessage: 'no select!'});
+			this.validation.push(lv_branch);			
 		},
 		
 		getNameAndAddress: function(e) {
@@ -122,22 +136,59 @@
 		
 		validate: function() {
 			this.lv_license = new LiveValidation('license_no');
-			this.lv_license.add( Validate.Presence, { failureMessage: "必填!" } );
-			this.lv_license.add( Validate.Length, {is:[13,15],wrongLengthMessage:'必须是13或15位数字'} );	
-		
+			this.lv_license.add( Validate.Presence, { failureMessage: "Can't be empty!" } );
+			this.lv_license.add(Validate.Numericality);
+			this.lv_license.add( Validate.Length, {is:[13,15],wrongLengthMessage:'Should 13 or 15 length!'} );	
+			this.validation.push(this.lv_license);
+			
 			var lv_name = new LiveValidation('name');
-			lv_name.add( Validate.Presence, { failureMessage: "必填!" } );
-		
+			lv_name.add( Validate.Presence, { failureMessage: "Can't be empty!" } );
+			this.validation.push(lv_name);
+			
 			var lv_addr = new LiveValidation('addr');
-			lv_addr.add( Validate.Presence, { failureMessage: "必填!" } );
+			lv_addr.add( Validate.Presence, { failureMessage: "Can't be empty!" } );
+			this.validation.push(lv_addr);
 			
 			var lv_code = new LiveValidation('code');
-			lv_code.add( Validate.Presence, { failureMessage: "必填!" } );
-			lv_code.add(Validate.Length, {is:15, wrongLengthMessage:'必须15位数字'});
-		
+			lv_code.add( Validate.Presence, { failureMessage: "Can't be empty!" } );
+			lv_code.add(Validate.Numericality);
+			lv_code.add(Validate.Length, {is:15, wrongLengthMessage:'Should 15 Length!'});
+			this.validation.push(lv_code);
+			
 			var lv_mcc = new LiveValidation('mcc');
-			lv_mcc.add( Validate.Presence, { failureMessage: "必填!" } );
-			lv_mcc.add(Validate.Length, {is:4, wrongLengthMessage:'必须4位数字'});
+			lv_mcc.add( Validate.Presence, { failureMessage: "Can't be empty!" } );
+			lv_mcc.add(Validate.Numericality);
+			lv_mcc.add(Validate.Length, {is:4, wrongLengthMessage:'Should 4 Length'});
+			this.validation.push(lv_mcc);
+			
+			var lv_terminal = new LiveValidation('terminal');
+			lv_terminal.add( Validate.Presence, { failureMessage: "Can't be empty!" } );
+			lv_terminal.add(Validate.Numericality);
+			this.validation.push(lv_terminal);
+			
+			var lv_tax_no = new LiveValidation('tax_no');
+			lv_tax_no.add( Validate.Presence, { failureMessage: "Can't be empty!" } );
+			lv_tax_no.add(Validate.Numericality);
+			lv_tax_no.add(Validate.Length, {is:[15,18,20],wrongLengthMessage:'15,18,20 length!'});
+			this.validation.push(lv_tax_no);
+			
+			var lv_id_card = new LiveValidation('id_card');
+			lv_id_card.add( Validate.Presence, { failureMessage: "Can't be empty!" } );
+			lv_id_card.add(Validate.Numericality);
+			lv_id_card.add(Validate.Length, {is:[15,18],wrongLengthMessage:'15,18 Length!'});
+			this.validation.push(lv_id_card);
+			
+			var lv_contact = new LiveValidation('contact');
+			lv_contact.add( Validate.Presence, { failureMessage: "Can't be empty!" } );	
+			this.validation.push(lv_contact);
+			
+			var lv_legal_person = new LiveValidation('legal_person');
+			lv_legal_person.add( Validate.Presence, { failureMessage: "Can't be empty!" } );	
+			this.validation.push(lv_legal_person);
+			
+			var lv_acquirer_id = new LiveValidation('acquirer-select');
+			lv_acquirer_id.add(Validate.Exclusion, { within: [ 'undefined' ], failureMessage: 'no select!'});
+			this.validation.push(lv_acquirer_id);
 			
 			/*date picker */
 			$.extend(DateInput.DEFAULT_OPTS, {
@@ -164,6 +215,18 @@
 
 			$('#send_date').date_input();	
 			$('#receive_date').date_input();						
+		},
+		
+		submit: function(e) {
+			var o = Object();
+			$('form input[type!=submit], form select').each(function() {
+				o[$(this).attr('id')] = $(this).val();
+			});
+			console.log(o);
+			var v = _.select(this.validation, function(lv) {return !lv.validate()});
+			if(v.length == 0) {
+				
+			}
 		}
 	});
 	MERCHANT.AddForm = AddForm;
