@@ -4,7 +4,7 @@ $js_files = array('vendor/less',
 				  'vendor/underscore',
 				  'vendor/jquery',
 				  'vendor/backbone',
-				  'vendor/jquery.livevalidation',
+				  'vendor/jquery.validate',
 				  'vendor/jquery.autocomplete',
 				  'vendor/jquery.date-input',
 

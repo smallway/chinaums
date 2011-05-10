@@ -1,13 +1,17 @@
 (function() {
 	
 	var Merchant = Backbone.Model.extend({
-		
+		url: function() {
+			return '/ci/api/merchant';
+		}
 	});
+	
+	MERCHANT.Merchant_Model = Merchant;
+	console.log(Merchant);
 
 	var MerchantList = Backbone.Collection.extend({
 		model: Merchant,
 		initialize: function() {
-			console.log(this);
 			this.limit = 2;
 			this.currentPage = 1;
 			this.bind('refresh', this.getTotalCount);

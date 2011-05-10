@@ -77,30 +77,30 @@
 	<div class="form-row form-row-left">
 		<div class="form-label">注册号：</div>
 		<div class="form-field">
-			<input id="license_no" type="text" name="license_no" autocomplete="off" maxLength="15" value="<?php echo isset($m_edit) ? $m_edit->license_no : '' ; ?>" />
+			<input id="license_no" type="text" class="required license_no" name="license_no" autocomplete="off" maxLength="15" />
 		</div>
 	</div>
 	
 	<div class="form-row form-row-right">
 		<div class="form-label">商户名称：</div>
-		<div class="form-field"><input id="name" type="text" autocomplete="off" name="name" readonly="readonly" value="<?php echo isset($m_edit) ? $m_edit->name : '' ; ?>" /></div>
+		<div class="form-field"><input id="name" class="required" type="text" autocomplete="off" name="name" readonly="readonly" /></div>
 	</div>
 	
 	<div class="form-row form-row-left">
 		<div class="form-label">地址：</div>
-		<div class="form-field"><input id="addr" type="text" name="addr" autocomplete="off" value="<?php echo isset($m_edit) ? $m_edit->addr : '' ; ?>" /></div>
+		<div class="form-field"><input id="addr" class="required" type="text" name="addr" autocomplete="off" /></div>
 	</div>
 	
 	<div class="form-row form-row-right">
 		<div class="form-label">商户代码：</div>
-		<div class="form-field"><input id="code" type="text" autocomplete="off" name="code"  readonly="readonly" maxLength="15" value="<?php echo isset($m_edit) ? $m_edit->code : '' ; ?>" /></div>
+		<div class="form-field"><input id="code" class="required mcht_code" type="text" autocomplete="off" name="code"  readonly="readonly" maxLength="15" /></div>
 		
 	</div>
 	
 	<div class="form-row form-row-left">
 		<div class="form-label">商户类型：</div>
 		<div class="form-field" id="mcc-field">
-			<input id="mcc" name="mcc" type="text" autocomplete="off" maxLength="4" value="<?php echo isset($m_edit) ? $m_edit->mcc : '' ; ?>" />
+			<input id="mcc" name="mcc" type="text" class="required" autocomplete="off" maxLength="4" />
 			<div id="desc"></div>
 		</div>
 	</div>
@@ -108,7 +108,7 @@
 	<div class="form-row form-row-right">
 		<div class="form-label">扣率：</div>
 		<div class="form-field">
-			<input id="rate" name="rate"  autocomplete="off" readonly="readonly" value="<?php echo isset($m_edit) ? $m_edit->rate : '' ; ?>" />
+			<input id="rate" name="rate"  class="required"  autocomplete="off" readonly="readonly" />
 			
 		</div>
 	</div>
@@ -116,7 +116,7 @@
 	<div class="form-row form-row-left">
 		<div class="form-label">收单银行：</div>
 		<div class="form-field">
-			<select id="acquirer-select">
+			<select id="acquirer">
 			    <option value="undefined">--select--</option>
 			<% _.each(acquirers, function(a) {%>
 				<option value="<%= a.id %>"><%= a.id %> - <%= a.name %></option>
@@ -128,30 +128,30 @@
 	<div class="form-row form-row-right">
 		<div class="form-label">支行：</div>
 		<div class="form-field" id="branch-wrapper">
-			<select>
-				<option>--select--</option>
+			<select id="branch">
+				<option value="undefined">--select--</option>
 			</select>
 			</div>
 	</div>
 	
 	<div class="form-row form-row-left">
 		<div class="form-label">收单账号：</div>
-		<div class="form-field"><input id="account" name="account" autocomplete="off" value="<?php echo isset($m_edit) ? $m_edit->account : '' ; ?>" /></div>
+		<div class="form-field"><input id="account" class="required" name="account" autocomplete="off" /></div>
 	</div>
 	
 	<div class="form-row form-row-right">
 		<div class="form-label">终端号：</div>
-		<div class="form-field"><input id="terminal" name="terminal" autocomplete="off" value="<?php echo isset($m_edit) ? $m_edit->terminal : '' ; ?>" /></div>
+		<div class="form-field"><input id="terminal" class="required" name="terminal" autocomplete="off" /></div>
 	</div>
 	
 	<div class="form-row form-row-left">
 		<div class="form-label">税务证：</div>
-		<div class="form-field"><input id="tax_no" name="tax_no" autocomplete="off" value="<?php echo isset($m_edit) ? $m_edit->tax_no : '' ; ?>" /></div>
+		<div class="form-field"><input id="tax_no" class="required" name="tax_no" autocomplete="off"  /></div>
 	</div>
 	
 	<div class="form-row form-row-right">
 		<div class="form-label">证件号码：</div>
-		<div class="form-field"><input id="id_card" name="id_card" autocomplete="off" value="<?php echo isset($m_edit) ? $m_edit->idcard : '' ; ?>" /></div>
+		<div class="form-field"><input id="id_card" class="required" name="id_card" autocomplete="off" /></div>
 	</div>
 	
 	
@@ -159,11 +159,11 @@
 	
 	<div class="form-row form-row-left">
 		<div class="form-label">联系方式：</div>
-		<div class="form-field"><input id="contact" name="contact" autocomplete="off" value="<?php echo isset($m_edit) ? $m_edit->contact : '' ; ?>" /></div>
+		<div class="form-field"><input id="contact" class="required" name="contact" autocomplete="off" /></div>
 	</div>
 	<div class="form-row form-row-right">
 		<div class="form-label">法人：</div>
-		<div class="form-field"><input id="legal_person" name="legal_person" autocomplete="off" value="<?php echo isset($m_edit) ? $m_edit->people : '' ; ?>" /></div>
+		<div class="form-field"><input id="legal_person" class="required" name="legal_person" autocomplete="off" /></div>
 	</div>
 	
 	
@@ -171,29 +171,29 @@
 	
 	<div class="form-row form-row-left">
 		<div class="form-label">风险确认函：</div>
-		<div class="form-field"><select id="is_comfirm_risk" name="is_comfirm_risk"><option value="0" <?php if(isset($m_edit)) echo !$m_edit->is_comfirm_risk? 'selected' : '' ?>>0_无</option><option value="1" <?php if(isset($m_edit)) echo $m_edit->is_comfirm_risk? 'selected' : '' ?>>1_有</option></select></div>
+		<div class="form-field"><select id="is_comfirm_risk" class="required" name="is_comfirm_risk"><option value="0">0_无</option><option value="1">1_有</option></select></div>
 	</div>
 	
 	<div class="form-row form-row-right">
 		<div class="form-label">担保：</div>
-		<div class="form-field"><select id="is_guarantee" name="is_guarantee"><option value="0" <?php if(isset($m_edit)) echo !$m_edit->is_guarantee? 'selected' : '' ?>>0_无</option><option value="1" <?php if(isset($m_edit)) echo $m_edit->is_guarantee? 'selected' : '' ?>>1_有</option></select></div>
+		<div class="form-field"><select id="is_guarantee" class="required" name="is_guarantee"><option value="0">0_无</option><option value="1">1_有</option></select></div>
 	</div>
 	
 	
 	
 	<div class="form-row form-row-left">
 		<div class="form-label">改签：</div>
-		<div class="form-field"><select id="is_change_bank" name="is_change_bank"><option value="0" <?php if(isset($m_edit)) echo !$m_edit->is_change_bank? 'selected' : '' ?>>0_无</option><option value="1" <?php if(isset($m_edit)) echo $m_edit->is_change_bank? 'selected' : '' ?>>1_有</option></select></div>
+		<div class="form-field"><select id="is_change_bank" name="is_change_bank"><option value="0">0_无</option><option value="1">1_有</option></select></div>
 	</div>
 	
 	<div class="form-row form-row-right">
 		<div class="form-label">递交时间：</div>
-		<div class="form-field"><input id="send_date" autocomplete="off" name="send_date" value="<?php echo isset($m_edit) ? $m_edit->send_date() : '' ; ?>" /></div>
+		<div class="form-field"><input id="send_date" class="required" autocomplete="off" name="send_date" /></div>
 	</div>
 	
 	<div class="form-row form-row-right">
 		<div class="form-label">接收时间：</div>
-		<div class="form-field"><input id="receive_date" autocomplete="off" name="receive_date" value="<?php echo isset($m_edit) ? $m_edit->receive_date() : '' ; ?>" /></div>
+		<div class="form-field"><input id="receive_date" class="required" autocomplete="off" name="receive_date" /></div>
 	</div>
 	
 	
@@ -201,13 +201,13 @@
 	
 	<div class="form-row form-row-left">
 		<div class="form-label">备注：</div>
-		<div class="form-field"><textarea id="comment" name="comment" cols="10" rows="10"><?php echo isset($m_edit) ? $m_edit->comment : '' ; ?></textarea></div>
+		<div class="form-field"><textarea id="comment" class="required" name="comment" cols="10" rows="10"></textarea></div>
 	</div>
 	
 	
 	<div class="form-row form-row-left">
 		<div class="form-label"> </div>
-		<div class="form-field"><input type="submit" value="<?php echo isset($m_edit->id) ? '更新' : '保存' ; ?>"></div>
+		<div class="form-field"><input type="submit" value="保存"></div>
 	</div>
 	
 	</form>

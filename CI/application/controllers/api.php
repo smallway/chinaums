@@ -153,6 +153,10 @@ class Api extends REST_Controller {
 		$q = Doctrine_Query::create()->from('mcc');
 		$this->response($q->fetchArray());
 	}
+	
+	function merchant_post() {
+		print_r($this->request->body);
+	}
 }
 
 

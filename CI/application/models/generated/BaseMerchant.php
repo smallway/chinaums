@@ -27,9 +27,11 @@ Doctrine_Manager::getInstance()->bindComponent('Merchant', 'chinaums');
  * @property boolean $is_discount
  * @property boolean $is_comfirm_risk
  * @property boolean $is_close_creditcard
+ * @property boolean $draft
  * @property datetime $create_date
  * @property date $send_date
  * @property date $receive_date
+ * @property string $comment
  * @property boolean $export_to_oss
  * @property boolean $export_to_unionpay
  * @property boolean $upload_scan_file
@@ -126,6 +128,10 @@ abstract class BaseMerchant extends Doctrine_Record
         $this->hasColumn('is_close_creditcard', 'boolean', null, array(
              'type' => 'boolean',
              ));
+        $this->hasColumn('draft', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => false,
+             ));
         $this->hasColumn('create_date', 'datetime', null, array(
              'type' => 'datetime',
              ));
@@ -136,6 +142,10 @@ abstract class BaseMerchant extends Doctrine_Record
         $this->hasColumn('receive_date', 'date', 25, array(
              'type' => 'date',
              'length' => '25',
+             ));
+        $this->hasColumn('comment', 'string', 255, array(
+             'type' => 'string',
+             'length' => '255',
              ));
         $this->hasColumn('export_to_oss', 'boolean', null, array(
              'type' => 'boolean',

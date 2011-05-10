@@ -85,7 +85,7 @@ try {
 }
 
 // Load the models for the autoloader
+Doctrine::loadModels(realpath(dirname(__FILE__) . '/..') . DIRECTORY_SEPARATOR . 'models/generated');
 Doctrine::loadModels(realpath(dirname(__FILE__) . '/..') . DIRECTORY_SEPARATOR . 'models');
-
 /* End of file database.php */
 /* Location: ./application/config/database.php */

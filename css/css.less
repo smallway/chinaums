@@ -238,7 +238,8 @@ body {
 			display: block;
 			margin-top: 3px;
 			border: 1px solid #BBB;
-			border-radius: 2px;
+			unicode-bidi: embed;
+			direction: ltr;			
 			padding: 5px 6px;
 			font-size: 15px;
 			width: 250px;
@@ -259,6 +260,12 @@ body {
 			position: absolute;
 			font-size: 11px;
 			font-style: italic;
+		}
+		label.error {
+			position: absolute;
+			font-size: 11px;
+			font-style: italic;
+			color: red;
 		}
 		#duplicate_wrapper {
 			position: absolute;

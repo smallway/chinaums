@@ -94,6 +94,8 @@ Merchant:
       type: date(25)
     receive_date:
       type: date(25)
+    comment: 
+      type: string(255)
     export_to_oss: 
       type: boolean
     export_to_unionpay:
